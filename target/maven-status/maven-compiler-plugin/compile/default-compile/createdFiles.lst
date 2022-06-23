@@ -1,0 +1,10 @@
+br\com\pizzaria\dao\BaseDao.class
+br\com\pizzaria\dao\BaseDaoImpl.class
+br\com\pizzaria\entidade\Pessoa.class
+br\com\pizzaria\tela\Principal$1.class
+br\com\pizzaria\dao\HibernateUtil.class
+br\com\pizzaria\util\GeradorUtil.class
+br\com\pizzaria\tela\Principal$2.class
+br\com\pizzaria\entidade\Cliente.class
+br\com\pizzaria\tela\Principal.class
+br\com\pizzaria\util\GeraTabela.class
