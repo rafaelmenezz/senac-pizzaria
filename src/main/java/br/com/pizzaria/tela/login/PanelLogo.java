@@ -16,11 +16,12 @@ public class PanelLogo extends JPanel{
 
     private void initComponents(){
         setLayout(null);
-        setBounds(10, 10, 335, 330);
+        setBounds(5, 5, 350, 350);
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         logo = new ImageIcon(getClass().getResource("/img/senacLogo.png"));
         logo.setImage(logo.getImage().getScaledInstance(340, 280, 100));
         imagem = new JLabel(logo);
-        imagem.setBounds(0, 0, 335, 350);
+        imagem.setBounds(5, 5, 335, 350);
         add(imagem);
     }
 }
