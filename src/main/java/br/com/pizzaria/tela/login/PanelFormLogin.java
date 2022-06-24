@@ -1,14 +1,19 @@
 package br.com.pizzaria.tela.login;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import br.com.pizzaria.tela.FramePrincipal;
+
 
 public class PanelFormLogin extends JPanel{
+
+    private JFrame pai;
 
     private JLabel labelLogin;
     private JLabel labelSenha;
@@ -20,7 +25,8 @@ public class PanelFormLogin extends JPanel{
     private JButton btnCancelar, btnEntrar;
 
 
-    public PanelFormLogin(){
+    public PanelFormLogin(JFrame pai){
+        this.pai = pai;
 
         initComponents();
     }
@@ -89,6 +95,12 @@ public class PanelFormLogin extends JPanel{
             }
         });
 
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
+
         add(btnCancelar);
         add(btnEntrar);
     }
@@ -97,5 +109,10 @@ public class PanelFormLogin extends JPanel{
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCepActionPerformed
         System.exit(0);
+    }
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCepActionPerformed
+        new FramePrincipal().setVisible(true);
+        pai.dispose();
+       
     }
 }

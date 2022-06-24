@@ -1,20 +1,23 @@
 package br.com.pizzaria.tela.login;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelLogo extends JPanel{
+public class PanelLogo extends JPanel {
+
+    private JFrame pai;
 
     private JLabel imagem;
     private ImageIcon logo;
 
-
-    public PanelLogo(){
-       initComponents();
+    public PanelLogo(JFrame pai) {
+        this.pai = pai;
+        initComponents();
     }
 
-    private void initComponents(){
+    private void initComponents() {
         setLayout(null);
         setBounds(5, 5, 350, 350);
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));

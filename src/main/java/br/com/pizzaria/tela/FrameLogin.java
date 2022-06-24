@@ -1,7 +1,10 @@
 
-package br.com.pizzaria.tela.login;
+package br.com.pizzaria.tela;
 
 import javax.swing.JPanel;
+
+import br.com.pizzaria.tela.login.PanelFormLogin;
+import br.com.pizzaria.tela.login.PanelLogo;
 
 public class FrameLogin extends javax.swing.JFrame {
 
@@ -19,8 +22,8 @@ public class FrameLogin extends javax.swing.JFrame {
 		setLocationRelativeTo(null); // método que centraliza a aplicação no centro da tela
 		setResizable(false); // Redimensionamento da tela desativada
 		setUndecorated(true); // tira as bordas e a barra de titulos do JFrame
-        pLogo = new PanelLogo();
-        pForm = new PanelFormLogin();            
+        pLogo = new PanelLogo(this);
+        pForm = new PanelFormLogin(this);            
 
         add(pLogo);
         add(pForm);

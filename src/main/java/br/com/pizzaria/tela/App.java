@@ -4,8 +4,6 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
-import br.com.pizzaria.tela.login.FrameLogin;
-
 
 public class App {
 
