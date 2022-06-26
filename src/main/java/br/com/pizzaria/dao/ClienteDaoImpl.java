@@ -27,12 +27,22 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long>
 
     @Override
     public List<Cliente> pesquisarPorNome(String nome,
-                           Session session) throws HibernateException {
-        Query<Cliente> consulta = session
+                               Session sessao) throws HibernateException {
+        Query<Cliente> consulta = sessao
                 .createQuery("from Cliente c join fetch c.enderecos "
                                         + "where c.nome like :nome");
         consulta.setParameter("nome", "%" + nome + "%");
         return consulta.getResultList();
+    }
+
+    @Override
+    public Cliente pesquisarPorTelefone(String telefone,
+                             Session sessao) throws HibernateException {
+        Query<Cliente> consulta = sessao.
+                    createQuery("select distinct(c) from Cliente c join fetch c.pedidos "
+                            + "where c.telefone = :tel");
+        consulta.setParameter("tel", telefone);
+        return consulta.getSingleResult();
     }
     
 }

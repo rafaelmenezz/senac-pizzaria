@@ -5,10 +5,8 @@
  */
 package br.com.pizzaria.dao;
 
-//import br.com.senac.entidade.Usuario;
-import br.com.pizzaria.entidade.Cliente;
-import br.com.pizzaria.entidade.Endereco;
-import br.com.pizzaria.entidade.Pessoa;
+
+import br.com.pizzaria.entidade.*;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -29,6 +27,9 @@ public class HibernateUtil {
             cfg.addAnnotatedClass(Pessoa.class);
             cfg.addAnnotatedClass(Cliente.class);
             cfg.addAnnotatedClass(Endereco.class);
+            cfg.addAnnotatedClass(Pedido.class);
+            cfg.addAnnotatedClass(Usuario.class);
+            cfg.addAnnotatedClass(Fornecedor.class);
 
             cfg.configure("/META-INF/hibernate.cfg.xml");
             StandardServiceRegistryBuilder build = new StandardServiceRegistryBuilder().
