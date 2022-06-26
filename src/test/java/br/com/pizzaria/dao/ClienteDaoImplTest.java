@@ -7,18 +7,16 @@ package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Endereco;
-import br.com.pizzaria.entidade.Pessoa;
+import br.com.pizzaria.entidade.Pedido;
 import static br.com.pizzaria.util.GeradorUtil.*;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author silvio.junior
- */
+
 public class ClienteDaoImplTest {
 
     private Cliente cliente;
@@ -29,7 +27,7 @@ public class ClienteDaoImplTest {
         clienteDao = new ClienteDaoImpl();
     }
 
-    @Test
+//    @Test
     public void testSalvar() {
         System.out.println("salvar");
         cliente = new Cliente(gerarNome(), gerarLogin() + "gmail.com",
@@ -39,7 +37,7 @@ public class ClienteDaoImplTest {
         enderecos.add(gerarEndereco());
         enderecos.add(gerarEndereco());
         cliente.setEnderecos(enderecos);
-        
+
         for (Endereco endereco : enderecos) {
             endereco.setPessoa(cliente);
         }
@@ -58,6 +56,32 @@ public class ClienteDaoImplTest {
 //    @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
+    }
+
+    @Test
+    public void testPesquisarPorTelefone() {
+        System.out.println("pesquisarPorTelefone");
+        buscarClienteBd();
+        sessao = HibernateUtil.abrirConexao();
+        Cliente clienteTelefone = clienteDao
+                .pesquisarPorTelefone(cliente.getTelefone(), sessao);
+        sessao.close();
+        assertNotNull(clienteTelefone);
+        assertTrue(!clienteTelefone.getPedidos().isEmpty());
+    }
+
+    public Cliente buscarClienteBd() {
+        sessao = HibernateUtil.abrirConexao();
+        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
+        List<Cliente> clientes = consulta.getResultList();
+        sessao.close();
+
+        if (clientes.isEmpty()) {
+            testSalvar();
+        } else {
+            cliente = clientes.get(0);
+        }
+        return cliente;
     }
 
 }
