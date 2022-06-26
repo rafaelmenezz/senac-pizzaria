@@ -22,7 +22,7 @@ public class FramePrincipal extends JFrame {
     }
 
     private void initComponents() {
-        setSize(1360, 750); // define o tamanho do Frame
+        setSize(1280, 680); // define o tamanho do Frame
         setLayout(null); // Método que permite manipular as posições dos componentes em tela
         setLocationRelativeTo(null); // método que centraliza a aplicação no centro da tela
         setResizable(false);
@@ -34,7 +34,7 @@ public class FramePrincipal extends JFrame {
     private void addMenuBar() {
 
         mbMenu = new JMenuBar();
-        mbMenu.setBounds(0, 0, 1360, 30);
+        mbMenu.setBounds(0, 0, 1280, 30);
 
         JMenuArquivo = new JMenu();
         JMenuArquivo.setText("Arquivo");
@@ -73,7 +73,7 @@ public class FramePrincipal extends JFrame {
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(null);
         panelPrincipal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        panelPrincipal.setBounds(5, 35, 1350, 670);
+        panelPrincipal.setBounds(5, 35, 1270, 600);
         add(panelPrincipal);
     }
 

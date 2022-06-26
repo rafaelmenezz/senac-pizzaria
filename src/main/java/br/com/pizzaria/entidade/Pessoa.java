@@ -9,6 +9,10 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.*;
 
+/**
+ *
+ * @author silvio.junior
+ */
 @Entity
 @Table(name = "pessoa")
 @Inheritance(strategy = InheritanceType.JOINED)

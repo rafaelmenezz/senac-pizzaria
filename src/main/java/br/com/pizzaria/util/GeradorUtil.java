@@ -20,9 +20,9 @@ public class GeradorUtil {
                 gerarNumero(3),
                 gerarCidade(),
                 "SC",
-                null,
+                "casa",
                 gerarCep(),
-                null
+                "px vaca branca"
         );
         return endereco;
     }
@@ -64,6 +64,10 @@ public class GeradorUtil {
                           "Lúcio", "João", "Leandro", "Soeli"};
         int indice = (int) (Math.random() * nomes.length);
         return nomes[indice] + " " + gerarSobrenome();
+    }
+    
+    public static String gerarEmail(){
+        return gerarNome()+"."+gerarSobrenome()+"@"+"teste.com";
     }
     
     public static String gerarProfissao() {

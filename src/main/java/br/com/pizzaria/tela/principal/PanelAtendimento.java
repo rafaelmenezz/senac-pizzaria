@@ -19,7 +19,7 @@ public class PanelAtendimento extends JPanel {
 
     private void initComponents() {
         setLayout(null);
-        setBounds(5,5,1330,600);
+        setBounds(5,5,1260,590);
     }
 
     private void addPanelSearch() {
