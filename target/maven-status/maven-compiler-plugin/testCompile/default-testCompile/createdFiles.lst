@@ -1,0 +1,4 @@
+br/com/pizzaria/dao/UsuarioDaoImplTest.class
+br/com/pizzaria/dao/PedidoDaoImplTest.class
+br/com/pizzaria/dao/FornecedorDaoImplTest.class
+br/com/pizzaria/dao/ClienteDaoImplTest.class

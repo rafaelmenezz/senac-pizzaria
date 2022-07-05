@@ -1,0 +1,15 @@
+# Created at 2022-07-04T13:02:14.868
+WARNING: An illegal reflective access operation has occurred
+
+# Created at 2022-07-04T13:02:14.869
+WARNING: Illegal reflective access by com.sun.xml.bind.v2.runtime.reflect.opt.Injector$1 (file:/home/menezes/.m2/repository/org/glassfish/metro/webservices-rt/2.3/webservices-rt-2.3.jar) to method java.lang.ClassLoader.defineClass(java.lang.String,byte[],int,int)
+
+# Created at 2022-07-04T13:02:14.870
+WARNING: Please consider reporting this to the maintainers of com.sun.xml.bind.v2.runtime.reflect.opt.Injector$1
+
+# Created at 2022-07-04T13:02:14.870
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+
+# Created at 2022-07-04T13:02:14.870
+WARNING: All illegal access operations will be denied in a future release
+

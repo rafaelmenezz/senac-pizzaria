@@ -2,18 +2,25 @@ package br.com.pizzaria.tela.principal;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 
-import br.com.pizzaria.tela.cards.CardCliente;
+import br.com.pizzaria.model.TabelaPesquisa;
 
 public class PanelAtendimento extends JPanel {
 
     private JPanel pai;
-    private JPanel pnlSearch, pnlCliente, pnlEndereco, pnlDetalhes;
+    private JPanel pnlSearch, pnlTabela;
 
     private JLabel lbPesquisar;
     private JTextField tfPesquisar;
+
+    private JTable tbCliente;
+    private TabelaPesquisa mdtPesquisa;
+
 
     public PanelAtendimento(JPanel pai) {
         this.pai = pai;    
@@ -22,17 +29,15 @@ public class PanelAtendimento extends JPanel {
 
     private void initComponents() {
         setLayout(null);
-        setBounds(5,5,1260,590);
+        setBounds(5,5,860,590);
         addPanelSearch();
         initPanelCliente();
-        initPanelEndereco();
-        initPanelDetalhes();
     }
 
     private void addPanelSearch() {
         pnlSearch = new JPanel();
         pnlSearch.setLayout(null);
-        pnlSearch.setBounds(5, 5, 1300, 30);
+        pnlSearch.setBounds(5, 5, 900, 30);
 
         lbPesquisar = new JLabel();
         lbPesquisar.setText("Nome ou Telefone:");
@@ -40,7 +45,7 @@ public class PanelAtendimento extends JPanel {
         lbPesquisar.setBounds(0, 0, 130, 30);
 
         tfPesquisar = new JTextField();
-        tfPesquisar.setBounds(135, 0, 1115, 30);
+        tfPesquisar.setBounds(135, 0, 715, 30);
 
         pnlSearch.add(lbPesquisar);
         pnlSearch.add(tfPesquisar);
@@ -49,28 +54,22 @@ public class PanelAtendimento extends JPanel {
     }
 
     private void initPanelCliente(){
-        pnlCliente = new JPanel();
-        pnlCliente.setBounds(5, 50, 625, 260);
-        pnlCliente.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
+        pnlTabela = new JPanel();
+        pnlTabela.setBounds(5, 50, 850, 500);
+        pnlTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        tbCliente = new JTable();
+        mdtPesquisa = new TabelaPesquisa();
+
+        tbCliente.setModel(mdtPesquisa);
+
+        JScrollPane scrollTbProduto = new JScrollPane(tbCliente, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollTbProduto.setBounds(0, 0, 850, 500);
+
+        pnlTabela.add(tbCliente);
     
-
-        add(pnlCliente);
+        add(pnlTabela);
     }
-    private void initPanelEndereco(){
-        pnlEndereco = new JPanel();
-        pnlEndereco.setBounds(5, 310, 625, 270);
-        pnlEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
-
-
-        add(pnlEndereco);
-    }
-
-    private void initPanelDetalhes(){
-        pnlDetalhes = new JPanel();
-        pnlDetalhes.setBounds(630, 50, 625, 530);
-        pnlDetalhes.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalhes"));
-
-
-        add(pnlDetalhes);
-    }
+   
 }

@@ -33,7 +33,7 @@ public class PanelFormLogin extends JPanel{
 
     private void initComponents(){
         setLayout(null);
-        setBounds(360, 5, 485, 350);
+        setBounds(5, 5, 485, 350);
         setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         adicionarLabelDetalhes();
