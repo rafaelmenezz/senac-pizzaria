@@ -27,7 +27,7 @@ public class ClienteDaoImplTest {
         clienteDao = new ClienteDaoImpl();
     }
 
-//    @Test
+    @Test
     public void testSalvar() {
         System.out.println("salvar");
         cliente = new Cliente(gerarNome(), gerarLogin() + "gmail.com",
@@ -48,12 +48,12 @@ public class ClienteDaoImplTest {
         assertNotNull(cliente.getId());
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
     }

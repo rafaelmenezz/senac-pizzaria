@@ -14,10 +14,7 @@ import org.hibernate.Session;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author silvio.junior
- */
+
 public class PedidoDaoImplTest {
 
     private Pedido pedido;
@@ -41,17 +38,17 @@ public class PedidoDaoImplTest {
         assertNotNull(pedido.getId());
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorNumero() {
         System.out.println("pesquisarPorNumero");
     }
 
-//    @Test
+    @Test
     public void testPesquisarPorValorMaiorIgual() {
         System.out.println("pesquisarPorValorMaiorIgual");
     }

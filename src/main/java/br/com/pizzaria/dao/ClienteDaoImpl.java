@@ -29,8 +29,8 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long>
     public List<Cliente> pesquisarPorNome(String nome,
                                Session sessao) throws HibernateException {
         Query<Cliente> consulta = sessao
-                .createQuery("from Cliente c join fetch c.enderecos "
-                                        + "where c.nome like :nome");
+                .createQuery("SELECT DISTINCT(c) from  Cliente c join fetch c.enderecos "
+                                        + "where c.nome like :nome", Cliente.class);
         consulta.setParameter("nome", "%" + nome + "%");
         return consulta.getResultList();
     }
@@ -40,7 +40,7 @@ public class ClienteDaoImpl extends BaseDaoImpl<Cliente, Long>
                              Session sessao) throws HibernateException {
         Query<Cliente> consulta = sessao.
                     createQuery("select distinct(c) from Cliente c join fetch c.pedidos "
-                            + "where c.telefone = :tel");
+                            + "where c.telefone = :tel", Cliente.class);
         consulta.setParameter("tel", telefone);
         return consulta.getSingleResult();
     }

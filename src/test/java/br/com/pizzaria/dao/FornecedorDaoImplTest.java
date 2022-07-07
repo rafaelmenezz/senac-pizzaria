@@ -26,7 +26,7 @@ public class FornecedorDaoImplTest {
         fornecedorDao = new FornecedorDaoImpl();
     }
 
-    //@Test
+    @Test
     public void testSalvar() {
         System.out.println("Teste salvar");
         
@@ -43,7 +43,7 @@ public class FornecedorDaoImplTest {
         assertNotNull(fornecedor.getId());
     }
     
-   // @Test
+   @Test
     public void testAlterar(){
         System.out.println("Teste salvar");
         

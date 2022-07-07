@@ -22,7 +22,7 @@ public class UsuarioDaoImplTest {
         usuarioDao = new UsuarioDaoImpl();
     }
 
-    // @Test
+     @Test
     public void testSalvar() {
         System.out.println("Teste Salvar");
 
@@ -36,7 +36,7 @@ public class UsuarioDaoImplTest {
         assertNotNull(usuario.getId());
     }
 
-    //@Test
+    @Test
     public void testAlterar() {
         System.out.println("Teste Alterar");
         buscarUsuarioBD();
@@ -54,7 +54,7 @@ public class UsuarioDaoImplTest {
         assertEquals(usuario.getNome(), alterado.getNome());
     }
     
-   // @Test
+    @Test
     public void testExcluir(){
         System.out.println("Teste Excluir");
         

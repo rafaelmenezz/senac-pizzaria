@@ -62,7 +62,7 @@ public class TabelaPesquisa extends AbstractTableModel implements Serializable {
         return null;
     }
 
-    public void pesquisarPorTelefone(String nome){
+    public void pesquisarClientePorNome(String nome){
         session = HibernateUtil.abrirConexao();
         clientes = clienteDao.pesquisarPorNome(nome, session);
         session.close();
@@ -70,4 +70,12 @@ public class TabelaPesquisa extends AbstractTableModel implements Serializable {
         this.fireTableDataChanged();
     }
 
+    public void limparListaClientes(){
+ 
+        clientes = new ArrayList<>();
+        this.fireTableDataChanged();
+    }
+    public Cliente getCliente(int linha){
+        return clientes.get(linha);
+    }
 }

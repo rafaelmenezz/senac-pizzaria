@@ -27,8 +27,6 @@ public class FramePrincipal extends JFrame {
         setLocationRelativeTo(null); // método que centraliza a aplicação no centro da tela
         setResizable(false);
         setTitle("Sistema Pizzaria - SENAC");
-
-        
     }
 
     private void addMenuBar() {
