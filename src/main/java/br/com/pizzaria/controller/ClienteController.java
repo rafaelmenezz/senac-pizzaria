@@ -1,4 +1,4 @@
-package br.com.pizzaria;
+package br.com.pizzaria.controller;
 
 import java.util.List;
 
@@ -26,6 +26,12 @@ public class ClienteController {
         session.close();
 
         return clientes;
+    }
+
+    public void salvarCliente(Cliente cliente){
+        session = HibernateUtil.abrirConexao();
+        cliDao.salvarOuAlterar(cliente, session);
+        session.close();
     }
     
 }

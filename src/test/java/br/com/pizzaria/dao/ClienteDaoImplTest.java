@@ -7,7 +7,6 @@ package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Endereco;
-import br.com.pizzaria.entidade.Pedido;
 import static br.com.pizzaria.util.GeradorUtil.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ public class ClienteDaoImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         cliente = new Cliente(gerarNome(), gerarLogin() + "gmail.com",
-                gerarTelefoneFixo(), true);
+                gerarCelular(), true);
 
         List<Endereco> enderecos = new ArrayList<>();
         enderecos.add(gerarEndereco());
@@ -48,14 +47,46 @@ public class ClienteDaoImplTest {
         assertNotNull(cliente.getId());
     }
 
+   // @Test
+    public void testExcluir(){
+        System.out.println("Excluir");
+
+        buscarClienteBd();
+
+        sessao = HibernateUtil.abrirConexao();
+        clienteDao.excluir(cliente, sessao);
+
+        sessao = HibernateUtil.abrirConexao();
+        Cliente excluido = clienteDao.pesquisarPorId(cliente.getId(), sessao);
+        sessao.close();
+
+        assertNull(excluido);
+    }
+
     @Test
     public void testPesquisarPorId() {
         System.out.println("pesquisarPorId");
+
+        buscarClienteBd();
+
+        sessao = HibernateUtil.abrirConexao();
+        Cliente pesquisado = clienteDao.pesquisarPorId(cliente.getId(), sessao);
+        sessao.close();
+
+        assertEquals(cliente.getNome(), pesquisado.getNome());
     }
 
     @Test
     public void testPesquisarPorNome() {
         System.out.println("pesquisarPorNome");
+        
+        buscarClienteBd();
+        sessao = HibernateUtil.abrirConexao();
+        List<Cliente> clientes = clienteDao.pesquisarPorNome(cliente.getNome(), sessao);
+        sessao.close();
+
+        assertTrue( !clientes.isEmpty());
+
     }
 
     @Test
@@ -72,7 +103,7 @@ public class ClienteDaoImplTest {
 
     public Cliente buscarClienteBd() {
         sessao = HibernateUtil.abrirConexao();
-        Query<Cliente> consulta = sessao.createQuery("from Cliente c");
+        Query<Cliente> consulta = sessao.createQuery("from Cliente c", Cliente.class);
         List<Cliente> clientes = consulta.getResultList();
         sessao.close();
 

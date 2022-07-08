@@ -81,7 +81,7 @@ public class FramePrincipal extends JFrame {
 
     private void mNovoAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
         panelPrincipal.setVisible(false);
-        JPanel atendimento = new PanelAtendimento(panelPrincipal);
+        JPanel atendimento = new PanelAtendimento();
         panelPrincipal.add(atendimento);
         panelPrincipal.setVisible(true);
 

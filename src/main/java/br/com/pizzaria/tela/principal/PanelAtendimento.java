@@ -8,14 +8,13 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import br.com.pizzaria.ClienteController;
+import br.com.pizzaria.controller.ClienteController;
 import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.model.TabelaPesquisa;
 import br.com.pizzaria.tela.Cliente.FrameCliente;
 
 public class PanelAtendimento extends JPanel {
 
-    private JPanel pai;
     private JPanel pnlSearch, pnlCliente;
 
     private JLabel lbPesquisar, lbNomeCliente, lbEmailCliente, lbTelefoneCliente;
@@ -30,8 +29,8 @@ public class PanelAtendimento extends JPanel {
 
     private Cliente cliente;
 
-    public PanelAtendimento(JPanel pai) {
-        this.pai = pai;
+    public PanelAtendimento() {
+     
         clienteCTRL = new ClienteController();
         initComponents();
     }
@@ -179,7 +178,7 @@ public class PanelAtendimento extends JPanel {
                     if (tbCliente.getSelectedRow() > -1) {
                         System.out.println("aqui");
                         cliente = mdtPesquisa.getCliente(tbCliente.getSelectedRow());
-                        FrameCliente frmCliente = new FrameCliente(cliente);
+                        FrameCliente frmCliente = new FrameCliente(cliente, mdtPesquisa);
                         frmCliente.setVisible(true);
                     }
 
