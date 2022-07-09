@@ -8,7 +8,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -236,12 +235,6 @@ public class FrameCliente extends JFrame {
         taObservao.setText(cliente.getEnderecos().get(0).getObservacao());
 
         habilitarEdicao(false);
-
-        // lbCep.setBounds(10, 130, 100, 30);
-        // tfCep.setBounds(110, 130, 350, 30);
-        // btnBuscarCep.setBounds(465, 130, 125, 30);
-
-        // btnBuscarCep.setBounds(465, 130, 125, 30);
 
     }
 

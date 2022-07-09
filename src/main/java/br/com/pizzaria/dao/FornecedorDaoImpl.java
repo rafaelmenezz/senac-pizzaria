@@ -24,7 +24,7 @@ public class FornecedorDaoImpl extends BaseDaoImpl<Fornecedor, Long> implements 
 
     @Override
     public Fornecedor buscarFornecedorCnpj(String cnpj, Session sessao) throws HibernateException {
-        Query<Fornecedor> consulta = sessao.createQuery("FROM Fornecedor f WHERE f.cnpj = :cnpj");
+        Query<Fornecedor> consulta = sessao.createQuery("FROM Fornecedor f WHERE f.cnpj = :cnpj", Fornecedor.class);
         consulta.setParameter("cnpj", cnpj);
         return consulta.getSingleResult();
     }

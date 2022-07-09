@@ -1,6 +1,5 @@
 package br.com.pizzaria.model;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +12,7 @@ import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.entidade.Cliente;
 
-public class TabelaPesquisa extends AbstractTableModel implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class TabelaPesquisa extends AbstractTableModel {
 
     private Session session;
     private List<Cliente> clientes;

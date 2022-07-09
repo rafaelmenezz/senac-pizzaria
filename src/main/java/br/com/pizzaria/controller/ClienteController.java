@@ -2,7 +2,6 @@ package br.com.pizzaria.controller;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 
 import br.com.pizzaria.dao.ClienteDao;

@@ -28,7 +28,7 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
     @Override
     public List<Pedido> pesquisarPorNumero(int numero, Session session) throws HibernateException {
         Query<Pedido> consulta = session
-                 .createQuery("from Pedido p where p.numero = :numero");
+                 .createQuery("from Pedido p where p.numero = :numero", Pedido.class);
         consulta.setParameter("numero", numero);
         return consulta.getResultList();
     }
@@ -37,7 +37,7 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
     public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor,
                               Session sessao) throws HibernateException {
        Query<Pedido> consulta = sessao
-              .createQuery("from Pedido p where p.valor_total >= :valor");
+              .createQuery("from Pedido p where p.valor_total >= :valor", Pedido.class);
         consulta.setParameter("valor", valor);
         return consulta.getResultList(); 
     }
