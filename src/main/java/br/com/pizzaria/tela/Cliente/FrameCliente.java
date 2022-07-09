@@ -47,12 +47,14 @@ public class FrameCliente extends JFrame {
         initComponents();
         visualizarDadosClientes(cliente);
         this.tbPesquisa = tbPesquisa;
+        editarCliente(false);
     }
 
     public FrameCliente(TabelaPesquisa tbPesquisa) {
         cliente = new Cliente();
         this.tbPesquisa = tbPesquisa;
         initComponents();
+        editarCliente(true);
     }
 
     private void initComponents() {
@@ -136,8 +138,6 @@ public class FrameCliente extends JFrame {
 
         btnCancelarAlteracaoCliente.setBounds(380, 400, 100, 30);
         btnSalvarDadosCliente.setBounds(490, 400, 100, 30);
-
-        editarCliente(false);
 
         add(lbNomeCliente);
         add(lbTelefoneCliente);
@@ -261,7 +261,6 @@ public class FrameCliente extends JFrame {
     }
 
     private Cliente carregarCliente() {
-        Cliente cliente = new Cliente();
         cliente.setNome(tfNomeCliente.getText().trim());
         cliente.setEmail(tfEmailCliente.getText().trim());
         cliente.setTelefone(tfTelefone.getText().trim());
@@ -293,6 +292,7 @@ public class FrameCliente extends JFrame {
         btnCancelarAlteracaoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarCliente(false);
+                dispose();
             }
         });
         btnCancelarAlteracaoCliente.addActionListener(new java.awt.event.ActionListener() {

@@ -12,7 +12,6 @@ import br.com.pizzaria.entidade.Cliente;
 
 public class ClienteController {
 
-    private Cliente cliente;
     private ClienteDao cliDao;
     private Session session;
 
@@ -31,6 +30,11 @@ public class ClienteController {
     public void salvarCliente(Cliente cliente){
         session = HibernateUtil.abrirConexao();
         cliDao.salvarOuAlterar(cliente, session);
+        session.close();
+    }
+    public void excluirCliente(Cliente cliente){
+        session = HibernateUtil.abrirConexao();
+        cliDao.excluir(cliente, session);
         session.close();
     }
     
