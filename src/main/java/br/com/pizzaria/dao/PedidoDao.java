@@ -16,6 +16,9 @@ import org.hibernate.Session;
  * @author silvio.junior
  */
 public interface PedidoDao extends BaseDao<Pedido, Long>{
+
+    List<Pedido> pesquisarPorNomeCliente(String nome, 
+                                            Session session) throws HibernateException;
     
     List<Pedido> pesquisarPorNumero(int numero,
                             Session session)throws HibernateException;

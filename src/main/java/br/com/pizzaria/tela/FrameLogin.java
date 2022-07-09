@@ -3,8 +3,6 @@ package br.com.pizzaria.tela;
 
 import javax.swing.JPanel;
 
-import br.com.pizzaria.tela.login.PanelFormLogin;
-
 public class FrameLogin extends javax.swing.JFrame {
 
     private JPanel pForm;

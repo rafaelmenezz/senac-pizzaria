@@ -26,7 +26,6 @@ br/com/pizzaria/dao/BaseDao.class
 br/com/pizzaria/tela/principal/PanelAtendimento.class
 br/com/pizzaria/tela/FramePrincipal$1.class
 br/com/pizzaria/dao/FornecedorDaoImpl.class
-br/com/pizzaria/tela/cards/CardCliente.class
 br/com/pizzaria/entidade/Fornecedor.class
 br/com/pizzaria/dao/FornecedorDao.class
 br/com/pizzaria/dao/BaseDaoImpl.class

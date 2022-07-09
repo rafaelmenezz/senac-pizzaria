@@ -12,14 +12,14 @@ import br.com.pizzaria.dao.ClienteDaoImpl;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.entidade.Cliente;
 
-public class TabelaPesquisa extends AbstractTableModel {
+public class ModeloTabelaCliente extends AbstractTableModel {
 
     private Session session;
     private List<Cliente> clientes;
     private ClienteDao clienteDao;
     private String[] colunas = { "Nome", "Telefone", "Email" };
 
-    public TabelaPesquisa() {
+    public ModeloTabelaCliente() {
         clientes = new ArrayList<>();
         clienteDao = new ClienteDaoImpl();
     }
@@ -64,13 +64,13 @@ public class TabelaPesquisa extends AbstractTableModel {
         clientes = clienteDao.pesquisarPorNome(nome, session);
         session.close();
 
-        this.fireTableDataChanged();
+        fireTableDataChanged();
     }
 
     public void limparListaClientes(){
  
         clientes = new ArrayList<>();
-        this.fireTableDataChanged();
+        fireTableDataChanged();
     }
     public Cliente getCliente(int linha){
         return clientes.get(linha);

@@ -1,4 +1,4 @@
-package br.com.pizzaria.tela.principal;
+package br.com.pizzaria.tela;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -7,16 +7,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 import org.hibernate.HibernateException;
 
 import br.com.pizzaria.controller.ClienteController;
 import br.com.pizzaria.entidade.Cliente;
-import br.com.pizzaria.model.TabelaPesquisa;
-import br.com.pizzaria.tela.Cliente.FrameCliente;
+import br.com.pizzaria.model.ModeloTabelaCliente;
 
-public class PanelAtendimento extends JPanel {
+public class PanelPesquisarCliente extends JPanel {
 
     private JPanel pnlSearch;
 
@@ -24,14 +22,14 @@ public class PanelAtendimento extends JPanel {
     private JTextField tfPesquisar;
     private JButton btnPesquisarCliente, btnEditarCliente, btnExcluirCliente, btnNovoCliente;
     private JTable tbCliente;
-    private TabelaPesquisa mdtPesquisa;
+    private ModeloTabelaCliente mdtPesquisa;
 
     private ClienteController clienteCTRL;
-    private JScrollPane scrollTbProduto;
+    private JScrollPane scrollTbCliente;
 
     private Cliente cliente;
 
-    public PanelAtendimento() {
+    public PanelPesquisarCliente() {
      
         clienteCTRL = new ClienteController();
         initComponents();
@@ -39,7 +37,7 @@ public class PanelAtendimento extends JPanel {
 
     private void initComponents() {
         setLayout(null);
-        setBounds(5, 5, 860, 590);
+        setBounds(5, 40, 860, 590);
 
         pnlSearch = new JPanel();
         pnlSearch.setLayout(null);
@@ -47,7 +45,6 @@ public class PanelAtendimento extends JPanel {
         
         lbPesquisar = new JLabel();
         lbPesquisar.setText("Nome ou Telefone:");
-        lbPesquisar.setHorizontalAlignment(SwingConstants.RIGHT);
         lbPesquisar.setBounds(0, 0, 130, 30);
 
         btnPesquisarCliente = new JButton("Pesquisar");
@@ -65,7 +62,7 @@ public class PanelAtendimento extends JPanel {
         btnEditarCliente.setBounds(750, 550, 100, 30);
 
         tbCliente = new JTable();
-        scrollTbProduto = new JScrollPane();
+        scrollTbCliente = new JScrollPane();
 
         addPanelSearch();
         initTabelaCliente();
@@ -83,17 +80,17 @@ public class PanelAtendimento extends JPanel {
 
     private void initTabelaCliente() {
 
-        mdtPesquisa = new TabelaPesquisa();
+        mdtPesquisa = new ModeloTabelaCliente();
         tbCliente.setModel(mdtPesquisa);
-        scrollTbProduto.setBounds(5, 50, 850, 490);
-        scrollTbProduto.setViewportView(tbCliente);
-        scrollTbProduto.setVisible(true);
+        scrollTbCliente.setBounds(5, 50, 850, 490);
+        scrollTbCliente.setViewportView(tbCliente);
+        scrollTbCliente.setVisible(true);
 
         add(btnExcluirCliente);
         add(btnEditarCliente);
         add(btnNovoCliente);
 
-        add(scrollTbProduto);
+        add(scrollTbCliente);
 
     }
 
@@ -139,6 +136,7 @@ public class PanelAtendimento extends JPanel {
                 if (tbCliente.getSelectedRow() > -1) {
                     cliente = mdtPesquisa.getCliente(tbCliente.getSelectedRow());
                     FrameCliente frmCliente = new FrameCliente(cliente, mdtPesquisa);
+                    frmCliente.editarCliente(true);
                     frmCliente.setVisible(true);
                 }
             }

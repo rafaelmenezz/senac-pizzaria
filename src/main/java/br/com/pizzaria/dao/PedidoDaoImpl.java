@@ -41,5 +41,14 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
         consulta.setParameter("valor", valor);
         return consulta.getResultList(); 
     }
+
+    @Override
+    public List<Pedido> pesquisarPorNomeCliente(String nome, Session session) throws HibernateException {
+        Query<Pedido> consulta = session
+                .createQuery("FROM Pedido p JOIN FETCH p.cliente c  WHERE c.nome LIKE :pesquisa", Pedido.class);
+        consulta.setParameter("pesquisa", "%"+nome+"%");        
+
+        return consulta.getResultList();
+    }
     
 }

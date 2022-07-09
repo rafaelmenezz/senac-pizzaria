@@ -1,4 +1,4 @@
-package br.com.pizzaria.tela.Cliente;
+package br.com.pizzaria.tela;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,13 @@ import br.com.pizzaria.controller.ClienteController;
 import br.com.pizzaria.entidade.Cliente;
 import br.com.pizzaria.entidade.Endereco;
 import br.com.pizzaria.entidade.EnderecoDTO;
-import br.com.pizzaria.model.TabelaPesquisa;
+import br.com.pizzaria.model.ModeloTabelaCliente;
 import br.com.pizzaria.webservice.CepRest;
 
 public class FrameCliente extends JFrame {
 
     private Cliente cliente;
-    private TabelaPesquisa tbPesquisa;
+    private ModeloTabelaCliente tbPesquisa;
 
     private JLabel lbNomeCliente, lbEmailCliente, lbTelefoneCliente, lbLogradouro, lbBairro,
             lbNumero, lbCidade, lbEstado, lbComplemento, lbCep, lbObservacao;
@@ -41,7 +41,7 @@ public class FrameCliente extends JFrame {
     private ClienteController clienteCTRL;
     private Endereco endereco;
 
-    public FrameCliente(Cliente cliente, TabelaPesquisa tbPesquisa) {
+    public FrameCliente(Cliente cliente, ModeloTabelaCliente tbPesquisa) {
         this.cliente = cliente;
         initComponents();
         visualizarDadosClientes(cliente);
@@ -49,7 +49,7 @@ public class FrameCliente extends JFrame {
         editarCliente(false);
     }
 
-    public FrameCliente(TabelaPesquisa tbPesquisa) {
+    public FrameCliente(ModeloTabelaCliente tbPesquisa) {
         cliente = new Cliente();
         this.tbPesquisa = tbPesquisa;
         initComponents();
@@ -203,7 +203,7 @@ public class FrameCliente extends JFrame {
         return telefone.length() == 10;
     }
 
-    private void editarCliente(Boolean editar) {
+    public void editarCliente(Boolean editar) {
         btnCancelarAlteracaoCliente.setVisible(editar);
         btnSalvarDadosCliente.setVisible(editar);
         btnEditarDadosCliente.setVisible(!editar);

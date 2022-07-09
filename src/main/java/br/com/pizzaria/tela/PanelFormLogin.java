@@ -1,4 +1,4 @@
-package br.com.pizzaria.tela.login;
+package br.com.pizzaria.tela;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -7,8 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import br.com.pizzaria.tela.FramePrincipal;
 
 
 public class PanelFormLogin extends JPanel{

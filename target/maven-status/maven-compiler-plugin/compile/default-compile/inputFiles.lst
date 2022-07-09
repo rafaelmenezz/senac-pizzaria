@@ -2,13 +2,15 @@
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/entidade/Usuario.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/entidade/Pessoa.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/tela/FrameLogin.java
+/home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/model/TabelaPesquisa.java
+/home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/tela/Cliente/FrameCliente.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/entidade/Pedido.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/dao/PedidoDao.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/dao/ClienteDao.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/entidade/Endereco.java
-/home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/tela/cards/CardCliente.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/tela/principal/PanelAtendimento.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/dao/UsuarioDaoImpl.java
+/home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/controller/ClienteController.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/dao/FornecedorDao.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/webservice/CepRest.java
 /home/menezes/Documentos/projetos/senac/senac-pizzaria/src/main/java/br/com/pizzaria/dao/HibernateUtil.java

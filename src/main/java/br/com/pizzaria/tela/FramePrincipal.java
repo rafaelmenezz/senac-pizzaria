@@ -6,13 +6,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
-import br.com.pizzaria.tela.principal.PanelAtendimento;
-
 public class FramePrincipal extends JFrame {
 
     private JMenuBar mbMenu;
-    private JMenu JMenuArquivo, jMenuAtendimento;
-    private JMenuItem mSair, mNovoAtendimento;
+    private JMenu JMenuArquivo, jMenuCliente, JMenuPedido;
+    private JMenuItem mSair, mClientePesquisar, mPedidoPesquisar;
     private JPanel panelPrincipal;
 
     public FramePrincipal() {
@@ -37,19 +35,26 @@ public class FramePrincipal extends JFrame {
         JMenuArquivo = new JMenu();
         JMenuArquivo.setText("Arquivo");
 
-        jMenuAtendimento = new JMenu();
-        jMenuAtendimento.setText("Atendimento");
+        jMenuCliente = new JMenu();
+        jMenuCliente.setText("Cliente");
 
-        mNovoAtendimento = new JMenuItem();
-        mNovoAtendimento.setText("Novo");
+        JMenuPedido = new JMenu("Pedido");
+
+        mClientePesquisar = new JMenuItem();
+        mClientePesquisar.setText("Pesquisar");
 
         mSair = new JMenuItem();
         mSair.setText("Sair");
 
-        jMenuAtendimento.add(mNovoAtendimento);
+        mPedidoPesquisar = new JMenuItem("Pesquisar");
+
+        jMenuCliente.add(mClientePesquisar);
         JMenuArquivo.add(mSair);
+        JMenuPedido.add(mPedidoPesquisar);
+
         mbMenu.add(JMenuArquivo);
-        mbMenu.add(jMenuAtendimento);
+        mbMenu.add(jMenuCliente);
+        mbMenu.add(JMenuPedido);
 
         mSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,9 +62,14 @@ public class FramePrincipal extends JFrame {
             }
         });
 
-        mNovoAtendimento.addActionListener(new java.awt.event.ActionListener() {
+        mClientePesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mNovoAtendimentoActionPerformed(evt);
+                mClientePesquisarActionPerformed(evt);
+            }
+        });
+        mPedidoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mPedidoPesquisarActionPerformed(evt);
             }
         });
 
@@ -79,10 +89,21 @@ public class FramePrincipal extends JFrame {
         System.exit(0);
     }
 
-    private void mNovoAtendimentoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+    private void mClientePesquisarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
         panelPrincipal.setVisible(false);
-        JPanel atendimento = new PanelAtendimento();
-        panelPrincipal.add(atendimento);
+        remove(panelPrincipal);
+        JPanel atendimento = new PanelPesquisarCliente();
+        panelPrincipal = atendimento;
+        panelPrincipal.setVisible(true);
+
+        add(panelPrincipal);
+    }
+
+    private void mPedidoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+        panelPrincipal.setVisible(false);
+        remove(panelPrincipal);
+        JPanel pedido = new PanelPequisarPedido();
+        panelPrincipal = pedido;
         panelPrincipal.setVisible(true);
 
         add(panelPrincipal);
