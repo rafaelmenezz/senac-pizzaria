@@ -98,7 +98,7 @@ public class ClienteDaoImplTest {
                 .pesquisarPorTelefone(cliente.getTelefone(), sessao);
         sessao.close();
         assertNotNull(clienteTelefone);
-        assertTrue(!clienteTelefone.getPedidos().isEmpty());
+
     }
 
     public Cliente buscarClienteBd() {

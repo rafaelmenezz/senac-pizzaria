@@ -10,7 +10,7 @@ public class FramePrincipal extends JFrame {
 
     private JMenuBar mbMenu;
     private JMenu JMenuArquivo, jMenuCliente, JMenuPedido;
-    private JMenuItem mSair, mClientePesquisar, mPedidoPesquisarCliente, mPedidoPesquisarData;
+    private JMenuItem mSair, mClientePesquisar, mNovoPedido, mPedidoPesquisarCliente, mPedidoPesquisarData;
     private JPanel panelPrincipal;
 
     public FramePrincipal() {
@@ -46,11 +46,13 @@ public class FramePrincipal extends JFrame {
         mSair = new JMenuItem();
         mSair.setText("Sair");
 
+        mNovoPedido = new JMenuItem("Novo");
         mPedidoPesquisarCliente = new JMenuItem("Pesquisar Cliente");
         mPedidoPesquisarData = new JMenuItem("Pesquisar Data");
 
         jMenuCliente.add(mClientePesquisar);
         JMenuArquivo.add(mSair);
+        JMenuPedido.add(mNovoPedido);
         JMenuPedido.add(mPedidoPesquisarCliente);
         JMenuPedido.add(mPedidoPesquisarData);
 
@@ -67,6 +69,11 @@ public class FramePrincipal extends JFrame {
         mClientePesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mClientePesquisarActionPerformed(evt);
+            }
+        });
+        mNovoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mNovoPedidoActionPerformed(evt);
             }
         });
         mPedidoPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +108,16 @@ public class FramePrincipal extends JFrame {
         remove(panelPrincipal);
         JPanel atendimento = new PanelPesquisarCliente();
         panelPrincipal = atendimento;
+        panelPrincipal.setVisible(true);
+
+        add(panelPrincipal);
+    }
+
+    private void mNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+        panelPrincipal.setVisible(false);
+        remove(panelPrincipal);
+        JPanel novoPedido = new PanelNovoPedido();
+        panelPrincipal = novoPedido;
         panelPrincipal.setVisible(true);
 
         add(panelPrincipal);

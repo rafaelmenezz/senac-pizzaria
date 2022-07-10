@@ -24,6 +24,7 @@ public class FrameCliente extends JFrame {
 
     private Cliente cliente;
     private ModeloTabelaCliente tbPesquisa;
+    private PanelNovoPedido pnp;
 
     private JLabel lbNomeCliente, lbEmailCliente, lbTelefoneCliente, lbLogradouro, lbBairro,
             lbNumero, lbCidade, lbEstado, lbComplemento, lbCep, lbObservacao;
@@ -54,6 +55,14 @@ public class FrameCliente extends JFrame {
         this.tbPesquisa = tbPesquisa;
         initComponents();
         editarCliente(true);
+    }
+
+    public FrameCliente(Cliente cliente, PanelNovoPedido pnp){
+        this.cliente = cliente;
+        this.pnp = pnp;
+        initComponents();
+        editarCliente(true);
+        tfTelefone.setText(cliente.getTelefone());
     }
 
     private void initComponents() {
@@ -318,7 +327,14 @@ public class FrameCliente extends JFrame {
                         JOptionPane.showMessageDialog(null, "Erro ao salvar!!");
                     }
                     JOptionPane.showMessageDialog(null, "Salvo com sucesso!!");
-                    tbPesquisa.limparListaClientes();
+                    
+                    if (pnp == null) {
+                        tbPesquisa.limparListaClientes();
+                    } else {
+                        pnp.carregarCliente();
+                        pnp.habilitarCadastro(true);
+                    }
+                    
                     dispose();
                 }
             }

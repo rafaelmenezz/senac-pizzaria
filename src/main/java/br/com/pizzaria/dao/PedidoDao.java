@@ -25,8 +25,9 @@ public interface PedidoDao extends BaseDao<Pedido, Long>{
                             Session session)throws HibernateException;
     
     List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor,
-                            Session sessao)throws HibernateException;
+                            Session session)throws HibernateException;
     
     List<Pedido> pesquisarPorPeriodo(String dtInicio, String dtFim, Session session)
                                                         throws HibernateException, ParseException;
+    Integer pesquisarUltimoNumero(Session session) throws HibernateException;
 }

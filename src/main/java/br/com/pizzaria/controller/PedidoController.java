@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import br.com.pizzaria.dao.HibernateUtil;
 import br.com.pizzaria.dao.PedidoDao;
 import br.com.pizzaria.dao.PedidoDaoImpl;
+import br.com.pizzaria.entidade.Pedido;
 import br.com.pizzaria.model.ModeloTabelaPedido;
 
 public class PedidoController {
@@ -39,6 +40,21 @@ public class PedidoController {
             JOptionPane.showMessageDialog(null, e);
         }
        
+    }
+    public Integer ultimoNumeroGravado(){
+        session = HibernateUtil.abrirConexao();
+        Integer numero = pedidoDao.pesquisarUltimoNumero(session);
+        return  numero;
+    }
+    public void salvarPedido(Pedido pedido){
+        try {
+            session = HibernateUtil.abrirConexao();
+            pedidoDao.salvarOuAlterar(pedido, session);
+            session.close();
+            JOptionPane.showMessageDialog(null, "Pedido salvo com sucesso.");
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar o pedido!");
+        }  
     }
 
     public void limparTabelaPedidos(){

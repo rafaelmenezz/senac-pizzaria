@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import br.com.pizzaria.controller.PedidoController;
 
@@ -43,8 +44,7 @@ public class PanelPequisarPedido extends JPanel {
         jtTabelaPedido = new JTable();
         scrollTbPedido = new JScrollPane();
 
-        lbPesquisarPedido = new JLabel();
-        lbPesquisarPedido.setText("Cliente | N° Pedido:");
+        lbPesquisarPedido = new JLabel("Nome do Cliente: ", SwingConstants.CENTER);
         lbPesquisarPedido.setBounds(0, 0, 130, 30);
 
         tfPesquisarPedido = new JTextField();
@@ -62,8 +62,8 @@ public class PanelPequisarPedido extends JPanel {
             ex.printStackTrace();
         }
 
-        lbPesquisaPeriodo = new JLabel("Pesquisa por período: ");
-        lbPesquisaPeriodo.setBounds(100, 0, 200, 30);
+        lbPesquisaPeriodo = new JLabel("Pesquisa por período: ", SwingConstants.CENTER);
+        lbPesquisaPeriodo.setBounds(50, 0, 200, 30);
         tfDataInicio.setBounds(240, 0, 150, 30);
         lbPeriodoAte = new JLabel(" - ");
         lbPeriodoAte.setBounds(400, 0, 50, 30);

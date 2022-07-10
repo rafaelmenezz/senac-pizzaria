@@ -75,4 +75,8 @@ public class ModeloTabelaCliente extends AbstractTableModel {
     public Cliente getCliente(int linha){
         return clientes.get(linha);
     }
+    public void atualizarDadosTabela(List<Cliente> clientes){
+        this.clientes = clientes;
+        fireTableDataChanged();
+    }
 }

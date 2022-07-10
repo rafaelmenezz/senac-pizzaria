@@ -21,7 +21,7 @@ public class PedidoDaoImplTest {
 
     private Pedido pedido;
     private PedidoDao pedidoDao;
-    private Session sessao;
+    private Session session;
 
     public PedidoDaoImplTest() {
         pedidoDao = new PedidoDaoImpl();
@@ -34,9 +34,9 @@ public class PedidoDaoImplTest {
 
         pedido = new Pedido(5, new BigDecimal(gerarNumero(3)), new Date());
         pedido.setCliente(cdit.buscarClienteBd());
-        sessao = HibernateUtil.abrirConexao();
-        pedidoDao.salvarOuAlterar(pedido, sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        pedidoDao.salvarOuAlterar(pedido, session);
+        session.close();
         assertNotNull(pedido.getId());
     }
 
@@ -45,9 +45,9 @@ public class PedidoDaoImplTest {
         System.out.println("pesquisarPorId");
         buscarPedidoBD();
 
-        sessao = HibernateUtil.abrirConexao();
-        Pedido pesquisado = pedidoDao.pesquisarPorId(pedido.getId(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        Pedido pesquisado = pedidoDao.pesquisarPorId(pedido.getId(), session);
+        session.close();
 
         assertNotNull(pesquisado);
 
@@ -61,13 +61,13 @@ public class PedidoDaoImplTest {
 
         pedido.setNumero(6);
 
-        sessao = HibernateUtil.abrirConexao();
-        pedidoDao.salvarOuAlterar(pedido, sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        pedidoDao.salvarOuAlterar(pedido, session);
+        session.close();
 
-        sessao = HibernateUtil.abrirConexao();
-        Pedido alterado = pedidoDao.pesquisarPorId(pedido.getId(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        Pedido alterado = pedidoDao.pesquisarPorId(pedido.getId(), session);
+        session.close();
 
         assertEquals(pedido.getNumero(), alterado.getNumero());
     }
@@ -77,9 +77,9 @@ public class PedidoDaoImplTest {
         System.out.println("pesquisarPorNumero");
         buscarPedidoBD();
 
-        sessao = HibernateUtil.abrirConexao();
-        List<Pedido> pesquisados = pedidoDao.pesquisarPorNumero(pedido.getNumero(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Pedido> pesquisados = pedidoDao.pesquisarPorNumero(pedido.getNumero(), session);
+        session.close();
 
         assertTrue(!pesquisados.isEmpty());
     }
@@ -89,9 +89,9 @@ public class PedidoDaoImplTest {
         System.out.println("pesquisarPorValorMaiorIgual");
         buscarPedidoBD();
 
-        sessao = HibernateUtil.abrirConexao();
-        List<Pedido> pedidos = pedidoDao.pesquisarPorValorMaiorIgual(pedido.getValor_total(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Pedido> pedidos = pedidoDao.pesquisarPorValorMaiorIgual(pedido.getValor_total(), session);
+        session.close();
 
         assertTrue(!pedidos.isEmpty());
 
@@ -103,9 +103,9 @@ public class PedidoDaoImplTest {
 
         buscarPedidoBD();
 
-        sessao = HibernateUtil.abrirConexao();
-        List<Pedido> pedidos = pedidoDao.pesquisarPorNomeCliente(pedido.getCliente().getNome(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Pedido> pedidos = pedidoDao.pesquisarPorNomeCliente(pedido.getCliente().getNome(), session);
+        session.close();
 
         assertTrue(!pedidos.isEmpty());
     }
@@ -117,18 +117,29 @@ public class PedidoDaoImplTest {
         Date date = new Date();
         SimpleDateFormat dtFormatado = new SimpleDateFormat("dd/MM/yyyy");
 
-        sessao = HibernateUtil.abrirConexao();
-        List<Pedido> pedidos = pedidoDao.pesquisarPorPeriodo("01/07/2022", dtFormatado.format(date), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Pedido> pedidos = pedidoDao.pesquisarPorPeriodo("01/07/2022", dtFormatado.format(date), session);
+        session.close();
 
         assertTrue(!pedidos.isEmpty());
     }
 
+    @Test
+    public void testPesquisarUltimoNumero(){
+        
+        buscarPedidoBD();
+        session = HibernateUtil.abrirConexao();
+        Integer ultimo = pedidoDao.pesquisarUltimoNumero(session);
+        session.close();
+
+        assertTrue(pedido.getNumero() == ultimo);
+    }
+
     public Pedido buscarPedidoBD() {
 
-        sessao = HibernateUtil.abrirConexao();
-        List<Pedido> pedidos = sessao.createQuery("FROM Pedido", Pedido.class).getResultList();
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Pedido> pedidos = session.createQuery("FROM Pedido", Pedido.class).getResultList();
+        session.close();
 
         if (pedidos.isEmpty()) {
             testSalvar();

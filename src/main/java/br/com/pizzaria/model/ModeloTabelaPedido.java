@@ -1,5 +1,6 @@
 package br.com.pizzaria.model;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class ModeloTabelaPedido extends AbstractTableModel {
                     return pedidos.get(linha).getNumero();
 
                 case 3:
-                    return pedidos.get(linha).getValor_total();
+                    return NumberFormat.getCurrencyInstance().format(pedidos.get(linha).getValor_total());
                 
                 case 4:
                     return pedidos.get(linha).getDt_pedido();

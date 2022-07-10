@@ -23,8 +23,8 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
                                      implements PedidoDao, Serializable{
 
     @Override
-    public Pedido pesquisarPorId(Long id, Session sessao) throws HibernateException {
-        return sessao.find(Pedido.class, id);
+    public Pedido pesquisarPorId(Long id, Session session) throws HibernateException {
+        return session.find(Pedido.class, id);
     }
 
     @Override
@@ -37,8 +37,8 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
 
     @Override
     public List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor,
-                              Session sessao) throws HibernateException {
-       Query<Pedido> consulta = sessao
+                              Session session) throws HibernateException {
+       Query<Pedido> consulta = session
               .createQuery("from Pedido p where p.valor_total >= :valor", Pedido.class);
         consulta.setParameter("valor", valor);
         return consulta.getResultList(); 
@@ -60,6 +60,11 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
         consulta.setParameter("dtInicio", dt.parse(dtInicio));
         consulta.setParameter("dtFim", dt.parse(dtFim));
         return consulta.getResultList();
+    }
+
+    @Override
+    public Integer pesquisarUltimoNumero(Session session) throws HibernateException {
+        return (Integer) session.createQuery("SELECT MAX(numero) FROM Pedido").getSingleResult();
     }
     
 }

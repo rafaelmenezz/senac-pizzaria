@@ -12,7 +12,6 @@ import org.hibernate.HibernateException;
 
 import br.com.pizzaria.controller.ClienteController;
 import br.com.pizzaria.entidade.Cliente;
-import br.com.pizzaria.model.ModeloTabelaCliente;
 
 public class PanelPesquisarCliente extends JPanel {
 
@@ -22,7 +21,6 @@ public class PanelPesquisarCliente extends JPanel {
     private JTextField tfPesquisar;
     private JButton btnPesquisarCliente, btnEditarCliente, btnExcluirCliente, btnNovoCliente;
     private JTable tbCliente;
-    private ModeloTabelaCliente mdtPesquisa;
 
     private ClienteController clienteCTRL;
     private JScrollPane scrollTbCliente;
@@ -80,8 +78,7 @@ public class PanelPesquisarCliente extends JPanel {
 
     private void initTabelaCliente() {
 
-        mdtPesquisa = new ModeloTabelaCliente();
-        tbCliente.setModel(mdtPesquisa);
+        tbCliente.setModel(clienteCTRL.getModeloTabela());
         scrollTbCliente.setBounds(5, 50, 850, 490);
         scrollTbCliente.setViewportView(tbCliente);
         scrollTbCliente.setVisible(true);
@@ -98,9 +95,9 @@ public class PanelPesquisarCliente extends JPanel {
         tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (tfPesquisar.getText().length() >= 2) {
-                    mdtPesquisa.pesquisarClientePorNome(tfPesquisar.getText());
+                    clienteCTRL.pesquisarClientePorNome(tfPesquisar.getText());
                 } else {
-                    mdtPesquisa.limparListaClientes();
+                    clienteCTRL.getModeloTabela().limparListaClientes();
                 }
             }
         });
@@ -110,8 +107,8 @@ public class PanelPesquisarCliente extends JPanel {
                 if (evt.getClickCount() == 2) {
                     if (tbCliente.getSelectedRow() > -1) {
                        
-                        cliente = mdtPesquisa.getCliente(tbCliente.getSelectedRow());
-                        FrameCliente frmCliente = new FrameCliente(cliente, mdtPesquisa);
+                        cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
+                        FrameCliente frmCliente = new FrameCliente(cliente, clienteCTRL.getModeloTabela());
                         frmCliente.setVisible(true);
                     }
 
@@ -120,22 +117,22 @@ public class PanelPesquisarCliente extends JPanel {
         });
         btnNovoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-              new FrameCliente(mdtPesquisa).setVisible(true);
+              new FrameCliente(clienteCTRL.getModeloTabela()).setVisible(true);
 
             }
         });
         btnPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (tfPesquisar.getText().length() > 2) {
-                    mdtPesquisa.pesquisarClientePorNome(tfPesquisar.getText());
+                    clienteCTRL.getModeloTabela().pesquisarClientePorNome(tfPesquisar.getText());
                 }
             }
         });
         btnEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (tbCliente.getSelectedRow() > -1) {
-                    cliente = mdtPesquisa.getCliente(tbCliente.getSelectedRow());
-                    FrameCliente frmCliente = new FrameCliente(cliente, mdtPesquisa);
+                    cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
+                    FrameCliente frmCliente = new FrameCliente(cliente, clienteCTRL.getModeloTabela());
                     frmCliente.editarCliente(true);
                     frmCliente.setVisible(true);
                 }
@@ -145,7 +142,7 @@ public class PanelPesquisarCliente extends JPanel {
         btnExcluirCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (tbCliente.getSelectedRow() > -1) {
-                    cliente = mdtPesquisa.getCliente(tbCliente.getSelectedRow());
+                    cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
                     try {
                         if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir todos os dados do " + cliente.getNome() + " ?") == 0) {
                             clienteCTRL.excluirCliente(cliente);
@@ -155,7 +152,7 @@ public class PanelPesquisarCliente extends JPanel {
                     } catch (HibernateException e) {
                         JOptionPane.showMessageDialog(null, "Erro ao excluir!!");
                     }
-                    mdtPesquisa.limparListaClientes();
+                    clienteCTRL.getModeloTabela().limparListaClientes();
                     tfPesquisar.setText("");
                 }
             }
