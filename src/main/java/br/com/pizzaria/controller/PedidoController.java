@@ -1,5 +1,7 @@
 package br.com.pizzaria.controller;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.Session;
 
 import br.com.pizzaria.dao.HibernateUtil;
@@ -27,6 +29,16 @@ public class PedidoController {
         session = HibernateUtil.abrirConexao();
         mtPedido.listarPedidos(pedidoDao.pesquisarPorNomeCliente(pesquisa, session));
         session.close();
+    }
+
+    public void pesquisarPeriodo(String dtInicio, String dtFim){
+        try {
+            session = HibernateUtil.abrirConexao();
+            mtPedido.listarPedidos(pedidoDao.pesquisarPorPeriodo(dtInicio, dtFim, session));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       
     }
 
     public void limparTabelaPedidos(){

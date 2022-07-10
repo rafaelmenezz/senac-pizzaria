@@ -7,6 +7,7 @@ package br.com.pizzaria.dao;
 
 import br.com.pizzaria.entidade.Pedido;
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -25,4 +26,7 @@ public interface PedidoDao extends BaseDao<Pedido, Long>{
     
     List<Pedido> pesquisarPorValorMaiorIgual(BigDecimal valor,
                             Session sessao)throws HibernateException;
+    
+    List<Pedido> pesquisarPorPeriodo(String dtInicio, String dtFim, Session session)
+                                                        throws HibernateException, ParseException;
 }

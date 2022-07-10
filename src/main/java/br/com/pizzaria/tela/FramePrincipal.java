@@ -10,7 +10,7 @@ public class FramePrincipal extends JFrame {
 
     private JMenuBar mbMenu;
     private JMenu JMenuArquivo, jMenuCliente, JMenuPedido;
-    private JMenuItem mSair, mClientePesquisar, mPedidoPesquisar;
+    private JMenuItem mSair, mClientePesquisar, mPedidoPesquisarCliente, mPedidoPesquisarData;
     private JPanel panelPrincipal;
 
     public FramePrincipal() {
@@ -46,11 +46,13 @@ public class FramePrincipal extends JFrame {
         mSair = new JMenuItem();
         mSair.setText("Sair");
 
-        mPedidoPesquisar = new JMenuItem("Pesquisar");
+        mPedidoPesquisarCliente = new JMenuItem("Pesquisar Cliente");
+        mPedidoPesquisarData = new JMenuItem("Pesquisar Data");
 
         jMenuCliente.add(mClientePesquisar);
         JMenuArquivo.add(mSair);
-        JMenuPedido.add(mPedidoPesquisar);
+        JMenuPedido.add(mPedidoPesquisarCliente);
+        JMenuPedido.add(mPedidoPesquisarData);
 
         mbMenu.add(JMenuArquivo);
         mbMenu.add(jMenuCliente);
@@ -67,9 +69,14 @@ public class FramePrincipal extends JFrame {
                 mClientePesquisarActionPerformed(evt);
             }
         });
-        mPedidoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+        mPedidoPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mPedidoPesquisarActionPerformed(evt);
+            }
+        });
+        mPedidoPesquisarData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mPedidoPesquisarDataActionPerformed(evt);
             }
         });
 
@@ -102,7 +109,16 @@ public class FramePrincipal extends JFrame {
     private void mPedidoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
         panelPrincipal.setVisible(false);
         remove(panelPrincipal);
-        JPanel pedido = new PanelPequisarPedido();
+        JPanel pedido = new PanelPequisarPedido(false);
+        panelPrincipal = pedido;
+        panelPrincipal.setVisible(true);
+
+        add(panelPrincipal);
+    }
+    private void mPedidoPesquisarDataActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+        panelPrincipal.setVisible(false);
+        remove(panelPrincipal);
+        JPanel pedido = new PanelPequisarPedido(true);
         panelPrincipal = pedido;
         panelPrincipal.setVisible(true);
 

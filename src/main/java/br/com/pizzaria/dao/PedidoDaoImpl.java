@@ -8,6 +8,8 @@ package br.com.pizzaria.dao;
 import br.com.pizzaria.entidade.Pedido;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -48,6 +50,15 @@ public class PedidoDaoImpl extends BaseDaoImpl<Pedido, Long>
                 .createQuery("FROM Pedido p JOIN FETCH p.cliente c  WHERE c.nome LIKE :pesquisa", Pedido.class);
         consulta.setParameter("pesquisa", "%"+nome+"%");        
 
+        return consulta.getResultList();
+    }
+
+    @Override
+    public List<Pedido> pesquisarPorPeriodo(String dtInicio, String dtFim, Session session) throws HibernateException, ParseException {
+        SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy");
+        Query<Pedido> consulta = session.createQuery("FROM Pedido p WHERE dt_pedido BETWEEN :dtInicio AND :dtFim", Pedido.class);
+        consulta.setParameter("dtInicio", dt.parse(dtInicio));
+        consulta.setParameter("dtFim", dt.parse(dtFim));
         return consulta.getResultList();
     }
     

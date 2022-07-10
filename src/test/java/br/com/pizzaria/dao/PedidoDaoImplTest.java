@@ -8,12 +8,14 @@ package br.com.pizzaria.dao;
 import br.com.pizzaria.entidade.Pedido;
 import static br.com.pizzaria.util.GeradorUtil.*;
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
 import org.hibernate.Session;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 
 public class PedidoDaoImplTest {
 
@@ -29,7 +31,7 @@ public class PedidoDaoImplTest {
     public void testSalvar() {
         System.out.println("salvar");
         ClienteDaoImplTest cdit = new ClienteDaoImplTest();
-        
+
         pedido = new Pedido(5, new BigDecimal(gerarNumero(3)), new Date());
         pedido.setCliente(cdit.buscarClienteBd());
         sessao = HibernateUtil.abrirConexao();
@@ -52,7 +54,7 @@ public class PedidoDaoImplTest {
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() {
         System.out.println("Alterar");
 
         buscarPedidoBD();
@@ -96,7 +98,7 @@ public class PedidoDaoImplTest {
     }
 
     @Test
-    public void textPesquisaPorNomeOuTelefone(){
+    public void testPesquisaPorNomeOuTelefone() {
         System.out.println("Pesquisa por nome ou telefone cliente");
 
         buscarPedidoBD();
@@ -108,7 +110,21 @@ public class PedidoDaoImplTest {
         assertTrue(!pedidos.isEmpty());
     }
 
-    public Pedido buscarPedidoBD(){
+    @Test
+    public void testPesquisarPorPeriodo() throws ParseException {
+
+        buscarPedidoBD();
+        Date date = new Date();
+        SimpleDateFormat dtFormatado = new SimpleDateFormat("dd/MM/yyyy");
+
+        sessao = HibernateUtil.abrirConexao();
+        List<Pedido> pedidos = pedidoDao.pesquisarPorPeriodo("01/07/2022", dtFormatado.format(date), sessao);
+        sessao.close();
+
+        assertTrue(!pedidos.isEmpty());
+    }
+
+    public Pedido buscarPedidoBD() {
 
         sessao = HibernateUtil.abrirConexao();
         List<Pedido> pedidos = sessao.createQuery("FROM Pedido", Pedido.class).getResultList();
