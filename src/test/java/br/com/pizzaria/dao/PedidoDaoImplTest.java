@@ -32,7 +32,9 @@ public class PedidoDaoImplTest {
         System.out.println("salvar");
         ClienteDaoImplTest cdit = new ClienteDaoImplTest();
 
-        pedido = new Pedido(5, new BigDecimal(gerarNumero(3)), new Date());
+        session = HibernateUtil.abrirConexao();
+        pedido = new Pedido(pedidoDao.pesquisarUltimoNumero(session) + 1, new BigDecimal(gerarNumero(3)), new Date());
+        session.close();
         pedido.setCliente(cdit.buscarClienteBd());
         session = HibernateUtil.abrirConexao();
         pedidoDao.salvarOuAlterar(pedido, session);
@@ -59,7 +61,10 @@ public class PedidoDaoImplTest {
 
         buscarPedidoBD();
 
-        pedido.setNumero(6);
+        session = HibernateUtil.abrirConexao();
+        pedido.setNumero(pedidoDao.pesquisarUltimoNumero(session) + 1);
+        session.close();
+
 
         session = HibernateUtil.abrirConexao();
         pedidoDao.salvarOuAlterar(pedido, session);
@@ -127,7 +132,7 @@ public class PedidoDaoImplTest {
     @Test
     public void testPesquisarUltimoNumero(){
         
-        buscarPedidoBD();
+        testSalvar();
         session = HibernateUtil.abrirConexao();
         Integer ultimo = pedidoDao.pesquisarUltimoNumero(session);
         session.close();

@@ -86,6 +86,17 @@ public class UsuarioDaoImplTest {
     }
 
     @Test
+    public void testQuantidadeUsuario(){
+        buscarUsuarioBD();
+
+        session = HibernateUtil.abrirConexao();
+        Integer qtd = usuarioDao.quantidadeUsuarios(session);
+        session.close();
+
+        assertTrue(qtd > 0);
+    }
+
+    @Test
     public void testVerificaLogin(){
         System.out.println("Teste Verificar login");
         buscarUsuarioBD();

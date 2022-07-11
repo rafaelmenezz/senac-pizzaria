@@ -1,6 +1,7 @@
 package br.com.pizzaria.model;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class ModeloTabelaPedido extends AbstractTableModel {
     @Override
     public Object getValueAt(int linha, int coluna) {
 
+        SimpleDateFormat dtFormat = new SimpleDateFormat("dd/MM/yyyy");
 
             switch (coluna) {
                 case 0:
@@ -58,7 +60,7 @@ public class ModeloTabelaPedido extends AbstractTableModel {
                     return NumberFormat.getCurrencyInstance().format(pedidos.get(linha).getValor_total());
                 
                 case 4:
-                    return pedidos.get(linha).getDt_pedido();
+                    return dtFormat.format(pedidos.get(linha).getDt_pedido()) ;
                 
                 default:
                     break;

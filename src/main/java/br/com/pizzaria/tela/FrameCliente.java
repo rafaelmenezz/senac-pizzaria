@@ -312,7 +312,7 @@ public class FrameCliente extends JFrame {
                     tfLogradouro.setText(enderecoDTO.getLogradouro());
                     tfBairro.setText(enderecoDTO.getBairro());
                     tfCidade.setText(enderecoDTO.getLocalidade());
-                    tfEstado.setToolTipText(enderecoDTO.getUf());
+                    tfEstado.setText(enderecoDTO.getUf());
 
                 }
             }
