@@ -16,7 +16,7 @@ public class UsuarioDaoImplTest {
 
     private Usuario usuario;
     private UsuarioDao usuarioDao;
-    private Session sessao;
+    private Session session;
 
     public UsuarioDaoImplTest() {
         usuarioDao = new UsuarioDaoImpl();
@@ -29,9 +29,9 @@ public class UsuarioDaoImplTest {
         usuario = new Usuario(GeradorUtil.gerarNome(),
                 GeradorUtil.gerarEmail(), GeradorUtil.gerarCelular(), GeradorUtil.gerarLogin(), GeradorUtil.gerarSenha(8));
 
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDao.salvarOuAlterar(usuario, sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        usuarioDao.salvarOuAlterar(usuario, session);
+        session.close();
 
         assertNotNull(usuario.getId());
     }
@@ -43,13 +43,13 @@ public class UsuarioDaoImplTest {
         
         usuario.setNome("Alterado" + GeradorUtil.gerarNome());
         
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDao.salvarOuAlterar(usuario, sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        usuarioDao.salvarOuAlterar(usuario, session);
+        session.close();
         
-        sessao = HibernateUtil.abrirConexao();
-        Usuario alterado = usuarioDao.pesquisarPorId(usuario.getId(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        Usuario alterado = usuarioDao.pesquisarPorId(usuario.getId(), session);
+        session.close();
         
         assertEquals(usuario.getNome(), alterado.getNome());
     }
@@ -60,13 +60,13 @@ public class UsuarioDaoImplTest {
         
         buscarUsuarioBD();
         
-        sessao = HibernateUtil.abrirConexao();
-        usuarioDao.excluir(usuario, sessao);
+        session = HibernateUtil.abrirConexao();
+        usuarioDao.excluir(usuario, session);
         
-        sessao = HibernateUtil.abrirConexao();
+        session = HibernateUtil.abrirConexao();
         
-        Usuario excluido = usuarioDao.pesquisarPorId(usuario.getId(), sessao);
-        sessao.close();
+        Usuario excluido = usuarioDao.pesquisarPorId(usuario.getId(), session);
+        session.close();
         
         assertNull(excluido);
         
@@ -78,17 +78,29 @@ public class UsuarioDaoImplTest {
         
         buscarUsuarioBD();
         
-        sessao = HibernateUtil.abrirConexao();
-        Usuario logado = usuarioDao.login(usuario.getLogin(), usuario.getSenha(), sessao);
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        Usuario logado = usuarioDao.login(usuario.getLogin(), usuario.getSenha(), session);
+        session.close();
         
         assertNotNull(logado);
     }
 
+    @Test
+    public void testVerificaLogin(){
+        System.out.println("Teste Verificar login");
+        buscarUsuarioBD();
+
+        session = HibernateUtil.abrirConexao();
+        Boolean existeLogin = usuarioDao.verificaLogin(usuario.getLogin(), session);
+        session.close();
+
+        assertTrue(existeLogin);
+    }
+
     public Usuario buscarUsuarioBD() {
-        sessao = HibernateUtil.abrirConexao();
-        List<Usuario> usuarios = sessao.createQuery("FROM Usuario u", Usuario.class).getResultList();
-        sessao.close();
+        session = HibernateUtil.abrirConexao();
+        List<Usuario> usuarios = session.createQuery("FROM Usuario u", Usuario.class).getResultList();
+        session.close();
 
         if (usuarios.isEmpty()) {
             testSalvar();

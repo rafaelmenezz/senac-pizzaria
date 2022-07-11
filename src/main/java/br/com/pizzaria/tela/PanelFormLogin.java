@@ -1,45 +1,49 @@
 package br.com.pizzaria.tela;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.EtchedBorder;
 
+import br.com.pizzaria.controller.UsuarioController;
 
-public class PanelFormLogin extends JPanel{
+public class PanelFormLogin extends JPanel {
 
     private JFrame pai;
+    private UsuarioController uController;
 
-    private JLabel labelLogin;
-    private JLabel labelSenha;
+    private JLabel lbLogin;
+    private JLabel lbSenha;
     private JLabel labelDetalhes;
 
-    private JTextField jtfLogin;
-    private JPasswordField jpSenha;
+    private JTextField tfLogin;
+    private JPasswordField tfSenha;
 
     private JButton btnCancelar, btnEntrar;
 
-
-    public PanelFormLogin(JFrame pai){
+    public PanelFormLogin(JFrame pai) {
         this.pai = pai;
-
+        uController = new UsuarioController();
         initComponents();
     }
 
-    private void initComponents(){
+    private void initComponents() {
         setLayout(null);
-        setBounds(5, 5, 485, 350);
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        setBounds(5, 5, 485, 300);
+        setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
 
         adicionarLabelDetalhes();
         adicionarLabelsForm();
         adicionarBotoes();
     }
 
-    private void adicionarLabelDetalhes(){
+    private void adicionarLabelDetalhes() {
         labelDetalhes = new JLabel();
         labelDetalhes.setFont(new java.awt.Font("Myanmar Text", 1, 24));
         labelDetalhes.setText("Sistema Pizzaria");
@@ -48,35 +52,31 @@ public class PanelFormLogin extends JPanel{
         add(labelDetalhes);
     }
 
-    private void adicionarLabelsForm(){
-        labelLogin = new JLabel();
-        labelLogin.setText("login:");
-        labelSenha = new JLabel();
-        labelSenha.setText("senha:");
+    private void adicionarLabelsForm() {
+        lbLogin = new JLabel();
+        lbLogin.setText("login:");
+        lbSenha = new JLabel();
+        lbSenha.setText("senha:");
 
-        jtfLogin = new JTextField();
-        jpSenha = new JPasswordField();
+        tfLogin = new JTextField();
+        tfSenha = new JPasswordField();
 
+        lbLogin.setHorizontalAlignment(SwingConstants.RIGHT);
+        lbLogin.setBounds(10, 80, 100, 30);
 
-        labelLogin.setFont(new java.awt.Font("Tahoma", 1, 20));
-        labelLogin.setHorizontalAlignment(SwingConstants.RIGHT);  
-        labelLogin.setBounds(10, 80, 100, 50);
+        lbSenha.setHorizontalAlignment(SwingConstants.RIGHT);
+        lbSenha.setBounds(10, 140, 100, 30);
 
-        labelSenha.setFont(new java.awt.Font("Tahoma", 1, 20));
-        labelSenha.setHorizontalAlignment(SwingConstants.RIGHT);  
-        labelSenha.setBounds(10, 140, 100, 50);
+        tfLogin.setBounds(120, 80, 350, 30);
+        tfSenha.setBounds(120, 140, 350, 30);
 
-
-        jtfLogin.setBounds(120, 80, 350, 50);
-        jpSenha.setBounds(120, 140, 350, 50);
-
-        add(labelLogin);
-        add(labelSenha);
-        add(jtfLogin);
-        add(jpSenha);
+        add(lbLogin);
+        add(lbSenha);
+        add(tfLogin);
+        add(tfSenha);
     }
 
-    private void adicionarBotoes(){
+    private void adicionarBotoes() {
 
         btnCancelar = new JButton();
         btnEntrar = new JButton();
@@ -84,8 +84,8 @@ public class PanelFormLogin extends JPanel{
         btnCancelar.setText("Cancelar");
         btnEntrar.setText("Entrar");
 
-        btnCancelar.setBounds(120, 220, 160, 50);
-        btnEntrar.setBounds(310, 220, 160, 50);
+        btnCancelar.setBounds(120, 190, 160, 30);
+        btnEntrar.setBounds(310, 190, 160, 30);
 
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,15 +102,18 @@ public class PanelFormLogin extends JPanel{
         add(btnCancelar);
         add(btnEntrar);
     }
-    
-    
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCepActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
         System.exit(0);
     }
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarCepActionPerformed
-        new FramePrincipal().setVisible(true);
-        pai.dispose();
-       
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+        if (uController.singIn(tfLogin.getText().trim(), new String(tfSenha.getPassword()).trim()) != null) {
+            new FramePrincipal().setVisible(true);
+            pai.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Login e/ou senha incorretos!");
+        }
+
     }
 }

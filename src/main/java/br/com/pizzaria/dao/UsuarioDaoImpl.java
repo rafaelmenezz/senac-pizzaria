@@ -29,5 +29,17 @@ public class UsuarioDaoImpl extends BaseDaoImpl<Usuario, Long> implements Usuari
         consulta.setParameter("senha", senha);
         return consulta.getSingleResult();
     }
+
+    @Override
+    public Integer quantidadeUsuarios(Session session) throws HibernateException {
+        return Integer.parseInt(session.createQuery("SELECT COUNT(*) FROM Usuario").getSingleResult().toString());
+    }
+
+    @Override
+    public Boolean verificaLogin(String login,  Session session) throws HibernateException {
+        Query<Long> consulta = session.createQuery("SELECT COUNT(*) FROM Usuario u WHERE u.login = :login", Long.class);
+        consulta.setParameter("login", login);
+        return Integer.parseInt(consulta.getSingleResult().toString()) > 0;
+    }
     
 }

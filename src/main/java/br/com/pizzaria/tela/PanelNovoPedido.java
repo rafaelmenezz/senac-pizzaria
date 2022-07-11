@@ -36,7 +36,7 @@ public class PanelNovoPedido extends JPanel {
     private JTextField tfNomeCliente, tfEmailCliente, tfTelefoneCliente,
             tfLogradouro, tfNumero, tfBairro, tfCidade, tfEstado,
             tfComplemento, tfNumeroPedido, tfDataPedido, tfValorTotal;
-    
+
     private JButton btnSalvarPedido, btnCancelarPedido;
 
     private JTextArea taObservacao;
@@ -203,7 +203,6 @@ public class PanelNovoPedido extends JPanel {
 
         btnSalvarPedido.setBounds(700, 260, 100, 30);
 
-
         addPanelSearch();
         initPanelCliente();
         initPanelPedido();
@@ -257,7 +256,6 @@ public class PanelNovoPedido extends JPanel {
         pnlEndereco.add(lbObservacao);
         pnlEndereco.add(taObservacao);
 
-
         add(pnlEndereco);
         add(pnlCliente);
     }
@@ -277,10 +275,10 @@ public class PanelNovoPedido extends JPanel {
         pnlPedido.add(lbValorTotal);
         pnlPedido.add(tfValorTotal);
 
-
         add(pnlPedido);
     }
-    private void addBotoes(){
+
+    private void addBotoes() {
         btnSalvarPedido.setBounds(760, 260, 100, 30);
         btnCancelarPedido.setBounds(650, 260, 100, 30);
         habilitarCadastro(false);
@@ -288,8 +286,7 @@ public class PanelNovoPedido extends JPanel {
         add(btnCancelarPedido);
     }
 
-
-    public void habilitarCadastro(Boolean habilitar){
+    public void habilitarCadastro(Boolean habilitar) {
         pnlPedido.setVisible(false);
         tfValorTotal.setEditable(habilitar);
         btnCancelarPedido.setEnabled(habilitar);
@@ -305,10 +302,10 @@ public class PanelNovoPedido extends JPanel {
                 System.out.println(e.getMessage());
             }
         }
-       
+
     }
 
-    private Pedido criarPedido(){
+    private Pedido criarPedido() {
 
         Pedido novoPedido = new Pedido();
         novoPedido.setCliente(cliente);
@@ -319,7 +316,7 @@ public class PanelNovoPedido extends JPanel {
         return novoPedido;
     }
 
-    public void carregarCliente(){
+    public void carregarCliente() {
 
         tfNomeCliente.setText(cliente.getNome());
         tfEmailCliente.setText(cliente.getEmail());
@@ -334,7 +331,7 @@ public class PanelNovoPedido extends JPanel {
         taObservacao.setText(cliente.getEnderecos().get(0).getObservacao());
     }
 
-    public void limparDados(){
+    public void limparDados() {
 
         tfNomeCliente.setText("");
         tfEmailCliente.setText("");
@@ -354,13 +351,13 @@ public class PanelNovoPedido extends JPanel {
         habilitarCadastro(false);
     }
 
-    private void novoCliente(){
-     
+    private void novoCliente() {
+
         if (JOptionPane.showConfirmDialog(null, "Cliente não encontrado, deseja cadastrar novo cliente?") == 0) {
             cliente.setTelefone(tfPesquisar.getText());
             new FrameCliente(cliente, this).setVisible(true);
             carregarCliente();
-            
+
         } else {
             tfPesquisar.setText("");
         }
@@ -371,13 +368,13 @@ public class PanelNovoPedido extends JPanel {
         btnPesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 if (tfPesquisar.getText().trim().length() >= 13 && tfPesquisar.getText().trim().length() <= 14) {
-                    
+
                     try {
                         cliente = clienteCTRL.buscarPorTelefone(tfPesquisar.getText().trim());
-                        carregarCliente(); 
-                        habilitarCadastro(true);   
+                        carregarCliente();
+                        habilitarCadastro(true);
                     } catch (Exception e) {
-                      novoCliente();
+                        novoCliente();
                     }
 
                 } else {
@@ -387,13 +384,13 @@ public class PanelNovoPedido extends JPanel {
         });
         btnSalvarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                if (tfValorTotal.getText().length() > 0 ) {
+                if (tfValorTotal.getText().length() > 0) {
                     pedidoCTRL.salvarPedido(criarPedido());
                     limparDados();
                 } else {
                     JOptionPane.showMessageDialog(null, "Campo valor total não preenchido!");
                 }
-                
+
             }
         });
 
@@ -402,6 +399,6 @@ public class PanelNovoPedido extends JPanel {
                 limparDados();
             }
         });
- 
+
     }
 }

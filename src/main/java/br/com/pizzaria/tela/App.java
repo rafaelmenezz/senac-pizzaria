@@ -4,6 +4,8 @@ import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatLightLaf;
 
+import br.com.pizzaria.controller.UsuarioController;
+
 
 public class App {
 
@@ -15,9 +17,17 @@ public class App {
         } catch( Exception ex ) {
             System.err.println( "Failed to initialize LaF" );
         }
+
+	
 		try {
-			FrameLogin app = new FrameLogin(); 
-			app.setVisible(true); 
+			if (new UsuarioController().existiUsuario()) {
+				FrameLogin app = new FrameLogin(); 
+				app.setVisible(true); 
+			} else {
+				FrameNovoUsuario novoUsuario = new FrameNovoUsuario();
+				novoUsuario.setVisible(true);
+			}
+			
 		} catch (Exception e) {
 			
 			JOptionPane.showMessageDialog(null, "Erro: " + e.toString(), "Erro App", JOptionPane.ERROR_MESSAGE);
