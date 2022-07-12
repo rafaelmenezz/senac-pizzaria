@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import br.com.pizzaria.controller.PedidoController;
 
@@ -117,6 +118,13 @@ public class PanelPequisarPedido extends JPanel {
         scrollTbPedido.setBounds(5, 50, 850, 520);
         scrollTbPedido.setViewportView(jtTabelaPedido);
         scrollTbPedido.setVisible(true);
+
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < jtTabelaPedido.getColumnModel().getColumnCount(); i++) {
+            jtTabelaPedido.getColumnModel().getColumn(i).setCellRenderer(centralizado);
+        }
 
         add(scrollTbPedido);
 

@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 import org.hibernate.HibernateException;
 
@@ -28,7 +30,7 @@ public class PanelPesquisarCliente extends JPanel {
     private Cliente cliente;
 
     public PanelPesquisarCliente() {
-     
+
         clienteCTRL = new ClienteController();
         initComponents();
     }
@@ -40,7 +42,7 @@ public class PanelPesquisarCliente extends JPanel {
         pnlSearch = new JPanel();
         pnlSearch.setLayout(null);
         pnlSearch.setBounds(5, 5, 900, 30);
-        
+
         lbPesquisar = new JLabel();
         lbPesquisar.setText("Nome ou Telefone:");
         lbPesquisar.setBounds(0, 0, 130, 30);
@@ -49,7 +51,6 @@ public class PanelPesquisarCliente extends JPanel {
         btnEditarCliente = new JButton("Editar");
         btnExcluirCliente = new JButton("Excluir");
         btnNovoCliente = new JButton("Novo");
-        
 
         tfPesquisar = new JTextField();
         tfPesquisar.setBounds(135, 0, 605, 30);
@@ -83,6 +84,13 @@ public class PanelPesquisarCliente extends JPanel {
         scrollTbCliente.setViewportView(tbCliente);
         scrollTbCliente.setVisible(true);
 
+        DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+
+        for (int i = 0; i < tbCliente.getColumnModel().getColumnCount(); i++) {
+            tbCliente.getColumnModel().getColumn(i).setCellRenderer(centralizado);
+        }
+
         add(btnExcluirCliente);
         add(btnEditarCliente);
         add(btnNovoCliente);
@@ -106,7 +114,7 @@ public class PanelPesquisarCliente extends JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
                     if (tbCliente.getSelectedRow() > -1) {
-                       
+
                         cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
                         FrameCliente frmCliente = new FrameCliente(cliente, clienteCTRL.getModeloTabela());
                         frmCliente.setVisible(true);
@@ -117,7 +125,7 @@ public class PanelPesquisarCliente extends JPanel {
         });
         btnNovoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-              new FrameCliente(clienteCTRL.getModeloTabela()).setVisible(true);
+                new FrameCliente(clienteCTRL.getModeloTabela()).setVisible(true);
 
             }
         });
@@ -144,11 +152,13 @@ public class PanelPesquisarCliente extends JPanel {
                 if (tbCliente.getSelectedRow() > -1) {
                     cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
                     try {
-                        if (JOptionPane.showConfirmDialog(null, "Deseja realmente excluir todos os dados do " + cliente.getNome() + " ?") == 0) {
+                        if (JOptionPane.showConfirmDialog(null,
+                                "Deseja realmente excluir todos os dados do " + cliente.getNome() + " ?") == 0) {
                             clienteCTRL.excluirCliente(cliente);
-                            JOptionPane.showMessageDialog(null, "Dados do " + cliente.getNome() + " excluído com sucesso!" );
-                        }                      
-                        
+                            JOptionPane.showMessageDialog(null,
+                                    "Dados do " + cliente.getNome() + " excluído com sucesso!");
+                        }
+
                     } catch (HibernateException e) {
                         JOptionPane.showMessageDialog(null, "Erro ao excluir!!");
                     }

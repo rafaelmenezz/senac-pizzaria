@@ -26,10 +26,15 @@ public class PedidoController {
     }
 
     public void pesquisarPedidoPorNomeCliente(String pesquisa){
-
-        session = HibernateUtil.abrirConexao();
-        mtPedido.listarPedidos(pedidoDao.pesquisarPorNomeCliente(pesquisa, session));
-        session.close();
+        try {
+            session = HibernateUtil.abrirConexao();
+            mtPedido.listarPedidos(pedidoDao.pesquisarPorNomeCliente(pesquisa, session));
+            session.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Não foi possível pesquisar cliente!");
+            System.out.println(e.getMessage());
+        }
+        
     }
 
     public void pesquisarPeriodo(String dtInicio, String dtFim){

@@ -45,10 +45,10 @@ public class ModeloTabelaCliente extends AbstractTableModel {
         switch (coluna) {
             case 0:
                 return clientes.get(linha).getNome();
-                
+
             case 1:
                 return clientes.get(linha).getTelefone();
-                
+
             case 2:
                 return clientes.get(linha).getEmail();
 
@@ -59,7 +59,7 @@ public class ModeloTabelaCliente extends AbstractTableModel {
         return null;
     }
 
-    public void pesquisarClientePorNome(String nome){
+    public void pesquisarClientePorNome(String nome) {
         session = HibernateUtil.abrirConexao();
         clientes = clienteDao.pesquisarPorNome(nome, session);
         session.close();
@@ -67,16 +67,19 @@ public class ModeloTabelaCliente extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public void limparListaClientes(){
- 
+    public void limparListaClientes() {
+
         clientes = new ArrayList<>();
         fireTableDataChanged();
     }
-    public Cliente getCliente(int linha){
+
+    public Cliente getCliente(int linha) {
         return clientes.get(linha);
     }
-    public void atualizarDadosTabela(List<Cliente> clientes){
+
+    public void atualizarDadosTabela(List<Cliente> clientes) {
         this.clientes = clientes;
         fireTableDataChanged();
     }
+                                                                                                                                                                                                                                                           
 }
