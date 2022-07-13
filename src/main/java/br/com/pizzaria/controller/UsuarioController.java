@@ -38,10 +38,10 @@ public class UsuarioController {
             session = HibernateUtil.abrirConexao();
             usuarioDao.salvarOuAlterar(usuario, session);
             session.close();
-            JOptionPane.showMessageDialog(null, "Dados do usuário " + usuario.getNome() + " salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Dados do usuário " + usuario.getNome() + " salvo com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "Não foi possivel salvar usuário!");
+            JOptionPane.showMessageDialog(null, "Não foi possivel salvar usuário!", "", JOptionPane.ERROR_MESSAGE);
         }
 
     }

@@ -31,7 +31,7 @@ public class PedidoController {
             mtPedido.listarPedidos(pedidoDao.pesquisarPorNomeCliente(pesquisa, session));
             session.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Não foi possível pesquisar cliente!");
+            JOptionPane.showMessageDialog(null, "Não foi possível pesquisar cliente!", "", JOptionPane.ERROR_MESSAGE);
             System.out.println(e.getMessage());
         }
         
@@ -42,7 +42,7 @@ public class PedidoController {
             session = HibernateUtil.abrirConexao();
             mtPedido.listarPedidos(pedidoDao.pesquisarPorPeriodo(dtInicio, dtFim, session));
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "", JOptionPane.ERROR_MESSAGE);
         }
        
     }
@@ -56,9 +56,9 @@ public class PedidoController {
             session = HibernateUtil.abrirConexao();
             pedidoDao.salvarOuAlterar(pedido, session);
             session.close();
-            JOptionPane.showMessageDialog(null, "Pedido salvo com sucesso.");
+            JOptionPane.showMessageDialog(null, "Pedido salvo com sucesso.", "", JOptionPane.INFORMATION_MESSAGE);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Não foi possível salvar o pedido!");
+            JOptionPane.showMessageDialog(null, "Não foi possível salvar o pedido!", "", JOptionPane.ERROR_MESSAGE);
         }  
     }
 

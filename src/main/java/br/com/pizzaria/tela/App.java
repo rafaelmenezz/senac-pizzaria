@@ -14,7 +14,7 @@ public class App {
         try {
             UIManager.setLookAndFeel( new FlatLightLaf() );
         } catch( Exception ex ) {
-            System.err.println( "Failed to initialize LaF" );
+            JOptionPane.showMessageDialog(null, "Erro: " + ex.getMessage(), "Erro App", JOptionPane.ERROR_MESSAGE);
         }
 
 	

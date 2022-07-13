@@ -103,16 +103,16 @@ public class PanelFormLogin extends JPanel {
         add(btnEntrar);
     }
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btBuscarCepActionPerformed
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {
         if (uController.singIn(tfLogin.getText().trim(), new String(tfSenha.getPassword()).trim()) != null) {
             new FramePrincipal().setVisible(true);
             pai.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "Login e/ou senha incorretos!");
+            JOptionPane.showMessageDialog(null,   "Login e/ou senha incorretos!", "", JOptionPane.ERROR_MESSAGE);
         }
 
     }

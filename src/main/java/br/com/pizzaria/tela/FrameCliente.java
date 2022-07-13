@@ -181,19 +181,38 @@ public class FrameCliente extends JFrame {
     private boolean validarFormulario() {
         String nome = tfNomeCliente.getText().trim();
         if (verificarCampoMaior2(nome)) {
-            JOptionPane.showMessageDialog(null, "O nome tem que ter "
-                    + "pelo menos 3 letras");
+            JOptionPane.showMessageDialog(null,  "O nome tem que ter pelo menos 3 letras", "", JOptionPane.WARNING_MESSAGE);
             return false;
         }
         String email = tfEmailCliente.getText().trim();
         if (verificarEmail(email)) {
-            JOptionPane.showMessageDialog(null, "Digite um e-mail correto!");
+            JOptionPane.showMessageDialog(null,  "Digite um e-mail correto!", "", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
         String telefone = tfTelefone.getText().trim();
         if (verificarTelefone(telefone)) {
-            JOptionPane.showMessageDialog(null, "Digite um telefone correto!");
+            JOptionPane.showMessageDialog(null,  "Digite um telefone correto!", "", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        String logradouro = tfLogradouro.getText().trim();
+        if (verificarCampoMaior2(logradouro)){
+            JOptionPane.showMessageDialog(null,  "Logradouro inválido!", "", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        String bairro = tfBairro.getText().trim();
+        if (verificarCampoMaior2(bairro)){
+            JOptionPane.showMessageDialog(null,  "Bairro inválido!", "", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        String cidade = tfCidade.getText().trim();
+        if (verificarCampoMaior2(cidade)){
+            JOptionPane.showMessageDialog(null,  "Cidade inválido!", "", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        String estado = tfEstado.getText().trim();
+        if (estado.length() != 2){
+            JOptionPane.showMessageDialog(null,  "Estado inválido!", "", JOptionPane.WARNING_MESSAGE);
             return false;
         }
 
@@ -286,6 +305,16 @@ public class FrameCliente extends JFrame {
         return cliente;
     }
 
+    private void habilitarEndereco(Boolean editar){
+        tfLogradouro.setEditable(editar);
+        tfNumero.setEditable(editar);
+        tfBairro.setEditable(editar);
+        tfCidade.setEditable(editar);
+        tfEstado.setEditable(editar);
+        tfComplemento.setEditable(editar);
+        taObservao.setEditable(editar);
+    }
+
     private void eventos() {
         btnEditarDadosCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -308,8 +337,10 @@ public class FrameCliente extends JFrame {
                 CepRest cepRest = new CepRest();
                 EnderecoDTO enderecoDTO = cepRest.pesquisarCep(tfCep.getText());
                 if (enderecoDTO == null) {
-                    JOptionPane.showMessageDialog(null, "CEP não encontrado!");
+                    JOptionPane.showMessageDialog(null,  "CEP não encontrado!", "", JOptionPane.WARNING_MESSAGE);
+                    habilitarEndereco(false);
                 } else {
+                    habilitarEndereco(true);
                     tfLogradouro.setText(enderecoDTO.getLogradouro());
                     tfBairro.setText(enderecoDTO.getBairro());
                     tfCidade.setText(enderecoDTO.getLocalidade());
@@ -325,9 +356,9 @@ public class FrameCliente extends JFrame {
                     try {
                         clienteCTRL.salvarCliente(cliente);
                     } catch (HibernateException e) {
-                        JOptionPane.showMessageDialog(null, "Erro ao salvar!!");
+                        JOptionPane.showMessageDialog(null,  "Erro ao salvar!!", "", JOptionPane.ERROR_MESSAGE);
                     }
-                    JOptionPane.showMessageDialog(null, "Salvo com sucesso!!");
+                    JOptionPane.showMessageDialog(null,  "Salvo com sucesso!!", "", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     
                     if (pnp == null) {

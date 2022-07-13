@@ -353,7 +353,7 @@ public class PanelNovoPedido extends JPanel {
 
     private void novoCliente() {
 
-        if (JOptionPane.showConfirmDialog(null, "Cliente não encontrado, deseja cadastrar novo cliente?") == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Cliente não encontrado, deseja cadastrar novo cliente?", " ", JOptionPane.QUESTION_MESSAGE) == 0) {
             cliente.setTelefone(tfPesquisar.getText());
             new FrameCliente(cliente, this).setVisible(true);
             carregarCliente();
@@ -378,7 +378,7 @@ public class PanelNovoPedido extends JPanel {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Numero de Telefone inválido!");
+                    JOptionPane.showMessageDialog(null, "Numero de Telefone inválido!", "", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -388,7 +388,7 @@ public class PanelNovoPedido extends JPanel {
                     pedidoCTRL.salvarPedido(criarPedido());
                     limparDados();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Campo valor total não preenchido!");
+                    JOptionPane.showMessageDialog(null, "Campo valor total não preenchido!", "", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

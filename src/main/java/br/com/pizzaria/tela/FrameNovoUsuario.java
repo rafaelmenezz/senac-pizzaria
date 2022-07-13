@@ -114,34 +114,33 @@ public class FrameNovoUsuario extends JFrame {
     private boolean validarFormulario() {
         String nome = tfNome.getText().trim();
         if (verificarCampoMaior2(nome)) {
-            JOptionPane.showMessageDialog(null, "O nome tem que ter "
-                    + "pelo menos 3 letras");
+            JOptionPane.showMessageDialog(null,   "O nome tem que ter pelo menos 3 letras", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         String email = tfEmail.getText().trim();
         if (verificarEmail(email)) {
-            JOptionPane.showMessageDialog(null, "Digite um e-mail correto!");
+            JOptionPane.showMessageDialog(null,   "Digite um e-mail correto!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         String telefone = tfTelefone.getText().trim();
         if (verificarTelefone(telefone)) {
-            JOptionPane.showMessageDialog(null, "Digite um telefone válido!");
+            JOptionPane.showMessageDialog(null,   "Digite um telefone válido!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         String login = tfLogin.getText().trim();
         if (login.length() < 5) {
-            JOptionPane.showMessageDialog(null, "Login deve no mínimo 5 caracter!");
+            JOptionPane.showMessageDialog(null,   "Login deve no mínimo 5 caracter!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
         if (uController.verificaLogin(login)) {
-            JOptionPane.showMessageDialog(null, "Login já está sendo utilizado!");
+            JOptionPane.showMessageDialog(null,   "Login já está sendo utilizado!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         String senha = tfSenha.getPassword().toString();
         if (senha.length() < 6) {
-            JOptionPane.showMessageDialog(null, "Senha deve ter no mínimo 6 caracter!");
+            JOptionPane.showMessageDialog(null,   "Senha deve ter no mínimo 6 caracter!", "", JOptionPane.ERROR_MESSAGE);
             return false;
         }
 
