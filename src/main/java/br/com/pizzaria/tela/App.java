@@ -11,7 +11,6 @@ public class App {
 
 	public static void main(String[] args) {
 
-		// Após executar o programa será aberto a primeira tela de login
         try {
             UIManager.setLookAndFeel( new FlatLightLaf() );
         } catch( Exception ex ) {

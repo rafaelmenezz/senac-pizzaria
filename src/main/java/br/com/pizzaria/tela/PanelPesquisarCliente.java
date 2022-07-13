@@ -125,7 +125,7 @@ public class PanelPesquisarCliente extends JPanel {
         });
         btnNovoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                new FrameCliente(clienteCTRL.getModeloTabela()).setVisible(true);
+                new FrameCliente().setVisible(true);
 
             }
         });

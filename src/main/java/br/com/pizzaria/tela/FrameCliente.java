@@ -48,13 +48,14 @@ public class FrameCliente extends JFrame {
         visualizarDadosClientes(cliente);
         this.tbPesquisa = tbPesquisa;
         editarCliente(false);
+        setTitle("Cliente " + this.cliente.getNome() );
     }
 
-    public FrameCliente(ModeloTabelaCliente tbPesquisa) {
+    public FrameCliente() {
         cliente = new Cliente();
-        this.tbPesquisa = tbPesquisa;
         initComponents();
         editarCliente(true);
+        setTitle("Cadastro de Cliente");
     }
 
     public FrameCliente(Cliente cliente, PanelNovoPedido pnp){
@@ -63,6 +64,7 @@ public class FrameCliente extends JFrame {
         initComponents();
         editarCliente(true);
         tfTelefone.setText(cliente.getTelefone());
+        setTitle("Cadastro de Cliente");
     }
 
     private void initComponents() {
@@ -70,7 +72,6 @@ public class FrameCliente extends JFrame {
         setLayout(null); // Método que permite manipular as posições dos componentes em tela
         setLocationRelativeTo(null); // método que centraliza a aplicação no centro da tela
         setResizable(false);
-        setTitle("Dados do Cliente");
 
         clienteCTRL = new ClienteController();
         endereco = new Endereco();
@@ -327,15 +328,16 @@ public class FrameCliente extends JFrame {
                         JOptionPane.showMessageDialog(null, "Erro ao salvar!!");
                     }
                     JOptionPane.showMessageDialog(null, "Salvo com sucesso!!");
+                    dispose();
                     
                     if (pnp == null) {
-                        tbPesquisa.limparListaClientes();
+                        if (tbPesquisa != null) {
+                            tbPesquisa.limparListaClientes();
+                        }                         
                     } else {
                         pnp.carregarCliente();
                         pnp.habilitarCadastro(true);
                     }
-                    
-                    dispose();
                 }
             }
         });

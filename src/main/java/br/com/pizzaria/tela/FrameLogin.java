@@ -18,7 +18,7 @@ public class FrameLogin extends javax.swing.JFrame {
         setLayout(null); // Método que permite manipular as posições dos componentes em tela
         setLocationRelativeTo(null); // método que centraliza a aplicação no centro da tela
         setResizable(false); // Redimensionamento da tela desativada
-        //setUndecorated(true); // tira as bordas e a barra de titulos do JFrame
+        setTitle("Login");
         pForm = new PanelFormLogin(this);
         add(pForm);
 
