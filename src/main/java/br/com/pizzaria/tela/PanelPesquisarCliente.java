@@ -153,7 +153,7 @@ public class PanelPesquisarCliente extends JPanel {
                     cliente = clienteCTRL.getModeloTabela().getCliente(tbCliente.getSelectedRow());
                     try {
                         if (JOptionPane.showConfirmDialog(null,
-                                "Deseja realmente excluir todos os dados do " + cliente.getNome() + " ?", "", JOptionPane.QUESTION_MESSAGE) == 0) {
+                                "Deseja realmente excluir todos os dados do " + cliente.getNome() + " ?") == 0) {
                             clienteCTRL.excluirCliente(cliente);
                             JOptionPane.showMessageDialog(null,
                                     "Dados do " + cliente.getNome() + " excluído com sucesso!", "", JOptionPane.INFORMATION_MESSAGE);

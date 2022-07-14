@@ -353,7 +353,7 @@ public class PanelNovoPedido extends JPanel {
 
     private void novoCliente() {
 
-        if (JOptionPane.showConfirmDialog(null, "Cliente não encontrado, deseja cadastrar novo cliente?", " ", JOptionPane.QUESTION_MESSAGE) == 0) {
+        if (JOptionPane.showConfirmDialog(null, "Cliente não encontrado, deseja cadastrar novo cliente?") == 0) {
             cliente.setTelefone(tfPesquisar.getText());
             new FrameCliente(cliente, this).setVisible(true);
             carregarCliente();
